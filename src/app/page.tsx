@@ -7,6 +7,8 @@ import { CTAButton } from '@/components/ui/cta-button';
 import AnimatedGradientText from '@/components/ui/animated-gradient-text';
 import ThemeToggle from '@/components/ui/theme-toggle';
 import { ShaderBackground } from '@/components/ui/shader-background';
+import { RollingText } from '@/components/ui/rolling-text';
+import { AnimatedCTAText } from '@/components/ui/animated-cta-text';
 import {
   Database,
   RefreshCw,
@@ -36,14 +38,20 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-8 text-sm">
             <a href="#features" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
               <span className="nav-text">
-                <span>Features</span>
-                <span>Features</span>
+                <span>Feature</span>
+                <span>Feature</span>
               </span>
             </a>
             <a href="#benefits" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
               <span className="nav-text">
-                <span>Benefits</span>
-                <span>Benefits</span>
+                <span>Services</span>
+                <span>Services</span>
+              </span>
+            </a>
+            <a href="#stats" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
+              <span className="nav-text">
+                <span>Suggestions</span>
+                <span>Suggestions</span>
               </span>
             </a>
             <a href="#contact" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
@@ -55,7 +63,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <CTAButton size="sm" href="#contact">Get Started</CTAButton>
+            <CTAButton size="sm" href="#contact">상담하기</CTAButton>
           </div>
         </div>
       </nav>
@@ -68,18 +76,24 @@ export default function Home() {
           <div className="text-center space-y-6">
             <h1 className="text-6xl md:text-8xl font-bold">
               <AnimatedGradientText>
-                Make work flow.<br />Start your flow.
+                WORK IN FLOW<br />WHERE DATA MEET AI
               </AnimatedGradientText>
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 dark:text-slate-300 max-w-3xl mx-auto font-semibold">
-              당신의 플로우를 시작하세요.
+              AI-데이터 기반의 비지니스 운영 체제 FlowOS
             </p>
             <p className="text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto">
-              FlowOS는 AI 기반의 데이터 운영 체제를 조직 안에 구축해주는 서비스입니다.<br />
-              데이터를 검증하고 연결하여, 기업이 더 효율적으로 일할 수 있는 구조를 만듭니다.
+              우리는 AI와 함께 기업이 가진 데이터를{' '}
+              <span className="inline-block w-16 text-center">
+                <RollingText words={['발견', '분석', '연결']} interval={2000} className="text-blue-600 dark:text-cyan-400" />
+              </span>{' '}
+              하고,<br />
+              효율적으로 일할 수 있는 근본적인 성장 구조를 설계합니다.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <CTAButton size="lg" href="#contact">당신의 플로우를 시작하세요 / Start your flow</CTAButton>
+              <CTAButton size="lg" href="#contact" className="min-w-[320px]">
+                <AnimatedCTAText />
+              </CTAButton>
             </div>
           </div>
         </div>
@@ -283,7 +297,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6">
+      <section id="stats" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">

@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { StarBorder } from './star-border';
 
 interface CTAButtonProps {
   children: ReactNode;
@@ -27,25 +28,31 @@ export function CTAButton({
   };
 
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white hover:shadow-2xl hover:shadow-blue-500/50',
-    secondary: 'bg-white dark:bg-slate-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400'
+    primary: 'bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white',
+    secondary: 'bg-white dark:bg-slate-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-slate-700'
   };
 
-  const baseClasses = `group rounded-full font-medium transition-all duration-300 transform hover:scale-105 flex items-center gap-2 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+  const baseClasses = `group rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center gap-2 ${sizeClasses[size]} ${variantClasses[variant]}`;
+
+  const starColor = variant === 'primary' ? '#06b6d4' : '#3b82f6';
 
   if (href) {
     return (
-      <a href={href} className={baseClasses}>
-        <span>{children}</span>
-        <ArrowRight className="w-5 h-5 btn-icon-slide" />
-      </a>
+      <StarBorder as="a" href={href} color={starColor} className={className}>
+        <div className={baseClasses}>
+          <span>{children}</span>
+          <ArrowRight className="w-5 h-5 btn-icon-slide" />
+        </div>
+      </StarBorder>
     );
   }
 
   return (
-    <button onClick={onClick} className={baseClasses}>
-      <span>{children}</span>
-      <ArrowRight className="w-5 h-5 btn-icon-slide" />
-    </button>
+    <StarBorder as="button" onClick={onClick} color={starColor} className={className}>
+      <div className={baseClasses}>
+        <span>{children}</span>
+        <ArrowRight className="w-5 h-5 btn-icon-slide" />
+      </div>
+    </StarBorder>
   );
 }

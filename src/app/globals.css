@@ -41,6 +41,64 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Sequential step stagger animations */
+  --animate-stagger-1: staggerFadeIn 0.6s ease-out 0s both;
+  --animate-stagger-2: staggerFadeIn 0.6s ease-out 0.15s both;
+  --animate-stagger-3: staggerFadeIn 0.6s ease-out 0.3s both;
+  --animate-stagger-4: staggerFadeIn 0.6s ease-out 0.45s both;
+  --animate-stagger-5: staggerFadeIn 0.6s ease-out 0.6s both;
+  --animate-stagger-6: staggerFadeIn 0.6s ease-out 0.75s both;
+
+  /* Progress bar shine animations */
+  --animate-progress-shine: progressShine 3s linear infinite;
+  --animate-progress-shine-delay-1: progressShine 3s linear infinite 0s;
+  --animate-progress-shine-delay-2: progressShine 3s linear infinite 0.3s;
+  --animate-progress-shine-delay-3: progressShine 3s linear infinite 0.6s;
+  --animate-progress-shine-delay-4: progressShine 3s linear infinite 0.9s;
+  --animate-progress-shine-delay-5: progressShine 3s linear infinite 1.2s;
+  --animate-progress-shine-delay-6: progressShine 3s linear infinite 1.5s;
+
+  /* Number badge pulse animations */
+  --animate-number-pulse: subtlePulse 3s ease-in-out infinite;
+  --animate-number-pulse-delay-1: subtlePulse 3s ease-in-out infinite 0s;
+  --animate-number-pulse-delay-2: subtlePulse 3s ease-in-out infinite 0.5s;
+  --animate-number-pulse-delay-3: subtlePulse 3s ease-in-out infinite 1s;
+  --animate-number-pulse-delay-4: subtlePulse 3s ease-in-out infinite 1.5s;
+  --animate-number-pulse-delay-5: subtlePulse 3s ease-in-out infinite 2s;
+  --animate-number-pulse-delay-6: subtlePulse 3s ease-in-out infinite 2.5s;
+
+  /* Keyframes for sequential step animations */
+  @keyframes staggerFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes progressShine {
+    0% {
+      background-position: -100% center;
+    }
+    100% {
+      background-position: 100% center;
+    }
+  }
+
+  @keyframes subtlePulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+  }
 }
 
 .dark {
@@ -259,6 +317,33 @@ html {
     transform: translateY(0);
   }
 }
+
+@keyframes star-movement-bottom {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(100%) translateY(0);
+  }
+}
+
+@keyframes star-movement-top {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(-100%) translateY(0);
+  }
+}
+
+.animate-star-movement-bottom {
+  animation: star-movement-bottom linear infinite;
+}
+
+.animate-star-movement-top {
+  animation: star-movement-top linear infinite;
+}
+
 
 .animate-on-scroll {
   animation: slideInUp 0.6s ease-out;

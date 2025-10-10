@@ -1,20 +1,24 @@
 'use client';
 
 import Image from 'next/image';
-import { FeatureCard } from '@/components/ui/feature-card';
 import { CTAButton } from '@/components/ui/cta-button';
 import AnimatedGradientText from '@/components/ui/animated-gradient-text';
 import ThemeToggle from '@/components/ui/theme-toggle';
 import { ShaderBackground } from '@/components/ui/shader-background';
 import { RollingText } from '@/components/ui/rolling-text';
 import { AnimatedCTAText } from '@/components/ui/animated-cta-text';
+import { StarBorder } from '@/components/ui/star-border';
+import { TargetCarousel } from '@/components/ui/target-carousel';
+import { CountingNumber } from '@/components/ui/counting-number';
+import { GlowMenuItem } from '@/components/ui/glow-menu-item';
 import {
-  Database,
-  RefreshCw,
   MessageCircle,
   Sparkles,
   Zap,
-  Shield
+  Lightbulb,
+  Database,
+  Workflow,
+  Code
 } from 'lucide-react';
 
 export default function Home() {
@@ -44,30 +48,10 @@ export default function Home() {
             />
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm">
-            <a href="#features" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
-              <span className="nav-text">
-                <span>Feature</span>
-                <span>Feature</span>
-              </span>
-            </a>
-            <a href="#benefits" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
-              <span className="nav-text">
-                <span>Services</span>
-                <span>Services</span>
-              </span>
-            </a>
-            <a href="#stats" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
-              <span className="nav-text">
-                <span>Suggestions</span>
-                <span>Suggestions</span>
-              </span>
-            </a>
-            <a href="#contact" className="nav-link text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white">
-              <span className="nav-text">
-                <span>Contact</span>
-                <span>Contact</span>
-              </span>
-            </a>
+            <GlowMenuItem href="#features">Feature</GlowMenuItem>
+            <GlowMenuItem href="#benefits">Services</GlowMenuItem>
+            <GlowMenuItem href="#stats">Suggestions</GlowMenuItem>
+            <GlowMenuItem href="#contact">Contact</GlowMenuItem>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
@@ -82,18 +66,25 @@ export default function Home() {
         <ShaderBackground className="opacity-50" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center space-y-6">
-            <h1 className="text-6xl md:text-8xl font-bold">
-              <AnimatedGradientText>
-                WORK IN FLOW<br />WHERE DATA MEET AI
-              </AnimatedGradientText>
+            <h1 className="font-bold space-y-0">
+              <div className="text-[3.375rem] md:text-[5.4rem] leading-tight">
+                <AnimatedGradientText>
+                  WORK IN FLOW
+                </AnimatedGradientText>
+              </div>
+              <div className="text-[2.15rem] md:text-[3.4rem] -mt-2">
+                <AnimatedGradientText>
+                  WHERE DATA MEETS AI.
+                </AnimatedGradientText>
+              </div>
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 dark:text-slate-300 max-w-3xl mx-auto font-semibold">
-              AI-데이터 기반의 비지니스 운영 체제 FlowOS
+              AI-데이터 기반의 비즈니스 운영 체제 FlowOS
             </p>
             <p className="text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto">
               우리는 AI와 함께 기업이 가진 데이터를{' '}
-              <span className="inline-block w-16 text-center">
-                <RollingText words={['발견', '분석', '연결']} interval={2000} className="text-blue-600 dark:text-cyan-400" />
+              <span className="inline-block w-20 text-center">
+                <RollingText words={['발견', '분석', '연결']} interval={2000} className="text-blue-600 dark:text-cyan-400 text-[1.27rem] md:text-[1.38rem] font-extrabold" />
               </span>{' '}
               하고,<br />
               효율적으로 일할 수 있는 근본적인 성장 구조를 설계합니다.
@@ -150,10 +141,7 @@ export default function Home() {
                 <h3 className="text-white font-semibold text-xl">조직 생산성 / 효율성</h3>
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="font-bold text-white leading-none">
-                      <span className="text-5xl">10</span>
-                      <span className="text-6xl">~30%</span>
-                    </div>
+                    <CountingNumber start={10} end={30} duration={2000} suffix="%" />
                   </div>
                 </div>
               </div>
@@ -163,10 +151,7 @@ export default function Home() {
                 <h3 className="text-white font-semibold text-lg">조직 운영 비용 / 리소스</h3>
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="font-bold text-white leading-none">
-                      <span className="text-5xl">10</span>
-                      <span className="text-6xl">~30%</span>
-                    </div>
+                    <CountingNumber start={10} end={30} duration={2000} suffix="%" />
                   </div>
                 </div>
               </div>
@@ -211,11 +196,11 @@ export default function Home() {
 
       {/* Value Proposition */}
       <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <blockquote className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8 text-center">
+        <div className="max-w-6xl mx-auto">
+          <blockquote className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-8 text-center">
             더 많은 기업들이 <span className="font-bold text-blue-600 dark:text-cyan-400">&apos;가치&apos;</span>에만 집중하기를 바랍니다.
           </blockquote>
-          <p className="text-xl text-gray-700 dark:text-slate-300 text-center leading-relaxed">
+          <p className="text-2xl text-gray-700 dark:text-slate-300 text-center leading-relaxed">
             FlowOS가 전략 컨설팅과 분석에서 끝나지 않는 시스템 운영 파트너로서,<br />
             AI와 사람이 함께 하는 새로운 업무의 흐름을 만들어드리겠습니다.
           </p>
@@ -227,35 +212,59 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              FlowOS는 이렇게 구축합니다
+              FlowOS 는 이런 서비스를 제공합니다.
             </h2>
-            <p className="text-xl text-gray-600 dark:text-slate-400">How FlowOS Builds Your Data OS</p>
+            <p className="text-xl text-gray-600 dark:text-slate-400">What FlowOS provides.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={Database}
-              title="데이터 구조 설계"
-              subtitle="Data Architecture"
-              description="흩어진 데이터를 업무 목적에 맞게 구조화하고 연결합니다."
-              iconColor="text-blue-600 dark:text-blue-400"
-            />
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <Lightbulb className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">업무 프로세스 컨설팅</h3>
+                </div>
+                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Operational process consulting</p>
+                <p className="text-sm text-gray-700 dark:text-slate-300">업무상의 문제를 정의하고 개선 포인트를 제안합니다.<br />기획, 디자인, 운영에 따른 로드맵을 구성합니다.</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-blue-500/5 dark:to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
 
-            <FeatureCard
-              icon={Shield}
-              title="AI 기반 검증 체계 구축"
-              subtitle="Smart Validation"
-              description="Smart Gate를 통해 데이터를 자동 검증하고, 신뢰 가능한 데이터 환경을 만듭니다."
-              iconColor="text-purple-600 dark:text-purple-400"
-            />
+            <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <Database className="w-12 h-12 text-purple-600 dark:text-purple-400" />
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">데이터 수집 및 구조화</h3>
+                </div>
+                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Data collection and structuring</p>
+                <p className="text-sm text-gray-700 dark:text-slate-300">분석의 기반이 되는 업무 데이터를 내부 자산화하고,<br />체계적인 관리 및 업데이트를 위한 CONTEXT HUB를 구축합니다.</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-purple-500/5 dark:to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
 
-            <FeatureCard
-              icon={RefreshCw}
-              title="운영 자동화 구현"
-              subtitle="Workflow Automation"
-              description="유효한 데이터를 기반으로 업무·보고·협업을 자동화합니다."
-              iconColor="text-cyan-600 dark:text-cyan-400"
-            />
+            <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <Workflow className="w-12 h-12 text-cyan-600 dark:text-cyan-400" />
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">워크플로우 디자인 설계</h3>
+                </div>
+                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Workflow design and architecture</p>
+                <p className="text-sm text-gray-700 dark:text-slate-300">반복 업무 자동화부터 전반의 프로세스를 최적화합니다.<br />부분적으로 AI 어시스턴트를 도입하여 효율화합니다.</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-cyan-500/5 dark:to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <Code className="w-12 h-12 text-green-600 dark:text-green-400" />
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">업무 시스템 개발 운영</h3>
+                </div>
+                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">System development and management</p>
+                <p className="text-sm text-gray-700 dark:text-slate-300">기능별 데모 제공 및 주기적으로 피드백을 반영합니다.<br />기업 맞춤형 솔루션을 구축하고 관리합니다.</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-green-500/5 dark:to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
           </div>
         </div>
       </section>
@@ -265,51 +274,107 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              We don&apos;t sell tools, we build systems.
+              FlowOS 가 기업의 성장을 돕는 과정입니다.
             </h2>
             <p className="text-xl text-gray-600 dark:text-slate-400">
-              우리는 도구를 파는 것이 아니라, 시스템을 구축합니다.
+              성과 및 효율 개선을 위한 End-To-End 를 함께합니다.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
-            <div className="text-center p-8 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="relative grid md:grid-cols-3 gap-8 mb-12">
+            {/* Step 1 */}
+            <div className="relative text-center p-8 pt-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-stagger-1">
+              {/* Progress indicator with shine effect */}
+              <div className="absolute top-0 left-0 right-0 h-5 rounded-t-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/40 to-transparent bg-[length:200%_100%] animate-progress-shine-delay-1"></div>
+              </div>
+              <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 animate-number-pulse-delay-1">
                 1
               </div>
-              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Discover (진단)</h5>
+              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Diagnose (진단)</h5>
               <p className="text-gray-700 dark:text-slate-300 text-sm">
-                데이터 흐름과 업무 구조를 분석합니다.
+                기업 현황 진단 및<br />개선 목표 정의
               </p>
             </div>
 
-            <div className="text-center p-8 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-purple-600 dark:text-purple-400">
+            {/* Step 2 */}
+            <div className="relative text-center p-8 pt-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-stagger-2">
+              {/* Progress indicator with shine effect */}
+              <div className="absolute top-0 left-0 right-0 h-5 rounded-t-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 dark:from-blue-400 dark:to-cyan-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/40 to-transparent bg-[length:200%_100%] animate-progress-shine-delay-2"></div>
+              </div>
+              <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 animate-number-pulse-delay-2">
                 2
               </div>
-              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Validate (검증)</h5>
+              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Design (설계)</h5>
               <p className="text-gray-700 dark:text-slate-300 text-sm">
-                Smart Gate로 데이터의 정확도를 점검하고 기준을 세웁니다.
+                데이터 수집 및<br />활용 구조 설계
               </p>
             </div>
 
-            <div className="text-center p-8 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <div className="w-16 h-16 mx-auto mb-4 bg-pink-100 dark:bg-pink-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-pink-600 dark:text-pink-400">
+            {/* Step 3 */}
+            <div className="relative text-center p-8 pt-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-stagger-3">
+              {/* Progress indicator with shine effect */}
+              <div className="absolute top-0 left-0 right-0 h-5 rounded-t-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400"></div>
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/40 to-transparent bg-[length:200%_100%] animate-progress-shine-delay-3"></div>
+              </div>
+              <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 animate-number-pulse-delay-3">
                 3
               </div>
-              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Build (구축)</h5>
+              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Propose (제안)</h5>
               <p className="text-gray-700 dark:text-slate-300 text-sm">
-                AI 기반 데이터 운영 체제를 설계·구현합니다.
+                개선 방안 수립 및 제안
               </p>
             </div>
 
-            <div className="text-center p-8 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <div className="w-16 h-16 mx-auto mb-4 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-orange-600 dark:text-orange-400">
+            {/* Step 4 */}
+            <div className="relative text-center p-8 pt-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-stagger-4">
+              {/* Progress indicator with shine effect */}
+              <div className="absolute top-0 left-0 right-0 h-5 rounded-t-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/40 to-transparent bg-[length:200%_100%] animate-progress-shine-delay-4"></div>
+              </div>
+              <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 animate-number-pulse-delay-4">
                 4
               </div>
-              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Scale (확장)</h5>
+              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Demo (데모)</h5>
               <p className="text-gray-700 dark:text-slate-300 text-sm">
-                검증된 운영 구조를 조직 전반으로 확장하고 지속 개선합니다.
+                자동화-AI 도구 개발 및<br />데모 제공
+              </p>
+            </div>
+
+            {/* Step 5 */}
+            <div className="relative text-center p-8 pt-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-stagger-5">
+              {/* Progress indicator with shine effect */}
+              <div className="absolute top-0 left-0 right-0 h-5 rounded-t-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 dark:from-blue-400 dark:to-cyan-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/40 to-transparent bg-[length:200%_100%] animate-progress-shine-delay-5"></div>
+              </div>
+              <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 animate-number-pulse-delay-5">
+                5
+              </div>
+              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Develop (개발)</h5>
+              <p className="text-gray-700 dark:text-slate-300 text-sm">
+                기업용 통합 시스템<br />개발 및 운영
+              </p>
+            </div>
+
+            {/* Step 6 */}
+            <div className="relative text-center p-8 pt-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-stagger-6">
+              {/* Progress indicator with shine effect */}
+              <div className="absolute top-0 left-0 right-0 h-5 rounded-t-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-cyan-600 dark:from-cyan-400 dark:to-cyan-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/40 to-transparent bg-[length:200%_100%] animate-progress-shine-delay-6"></div>
+              </div>
+              <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 animate-number-pulse-delay-6">
+                6
+              </div>
+              <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Update (업데이트)</h5>
+              <p className="text-gray-700 dark:text-slate-300 text-sm">
+                이용 피드백 반영 및<br />기능 업데이트
               </p>
             </div>
           </div>
@@ -324,16 +389,36 @@ export default function Home() {
       <section className="py-20 px-6 bg-gray-50 dark:bg-slate-900/30">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Ready to start your flow?
+            아직도 너무 어려워보이시나요?
           </h2>
           <p className="text-xl text-gray-700 dark:text-slate-300 mb-4 font-semibold">
-            지금 당신의 플로우를 시작하세요.
+            망설임은 성장만 늦출 뿐입니다.
           </p>
           <p className="text-lg text-gray-600 dark:text-slate-400 mb-8">
-            당신의 조직 안에 AI 기반 데이터 운영 체제를 구축해 보세요.<br />
-            단순한 효율을 넘어, 실행력 있는 시스템으로 변화할 시간입니다.
+            데이터 기반의 의사결정, 협력 그리고 자동화까지,<br />
+            기업이 AI와 함께 일하는 방식을 혁신할 시간입니다.
           </p>
-          <CTAButton size="lg" href="#contact">당신의 플로우를 시작하세요 / Start your flow</CTAButton>
+          <CTAButton size="lg" href="#contact">지금 바로 당신의 비즈니스 고민을 공유해주세요.</CTAButton>
+        </div>
+      </section>
+
+      {/* Target Companies Section */}
+      <section className="py-20 px-6 overflow-hidden bg-white dark:bg-slate-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              이런 기업들에게 제안드립니다.
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-slate-400 mb-1">
+              어떤 산업, 어떤 기업이든 데이터는 쌓이고 있습니다.
+            </p>
+            <p className="text-lg text-gray-600 dark:text-slate-400">
+              데이터를 어떤 방식으로 활용하는지가 관건입니다
+            </p>
+          </div>
+
+          {/* Centered Carousel */}
+          <TargetCarousel />
         </div>
       </section>
 
@@ -354,9 +439,9 @@ export default function Home() {
               <div className="text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent mb-4">
                 98%
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">리테일 기업 A사</h3>
+             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">G 글로벌 스타트업</h3>
               <p className="text-gray-700 dark:text-slate-300">
-                Smart Gate 검증으로 재고 데이터 정확도 98% 향상.
+                전력 소비-기후 데이터 활용AI 기반<br/>태양광 발전 효율화 시스템 설계 및 개발 
               </p>
             </div>
 
@@ -364,9 +449,9 @@ export default function Home() {
               <div className="text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-4">
                 3x
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">미디어 기업 B사</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">C 기업</h3>
               <p className="text-gray-700 dark:text-slate-300">
-                자동화 프로세스 구축으로 보고 효율 3배 개선.
+                고객 영업-서비스 제공 데이터 활용<br/>AI 기반 영업-운영 반자동화 시스템 구축
               </p>
             </div>
 
@@ -374,9 +459,9 @@ export default function Home() {
               <div className="text-6xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent mb-4">
                 2x
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">스타트업 C사</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">K 광고대행사</h3>
               <p className="text-gray-700 dark:text-slate-300">
-                데이터 워크플로우 구축으로 제품 개선 속도 2배 향상.
+                소비자 컨텐츠 반응 데이터 활용<br/>광고물 적정성-노출도 스코어링 시스템 구축
               </p>
             </div>
           </div>
@@ -390,14 +475,14 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Tell us about your goal
+                당신의 비즈니스 목표를<br/>알려주세요.
               </h2>
               <p className="text-xl text-gray-700 dark:text-slate-300 mb-4">
-                당신의 목표를 알려주세요.
+                성과 개선도 좋고, 비용 감축도 좋습니다.<br />
+                FlowOS 가 당신의 파트너가 되어드리겠습니다.
               </p>
               <p className="text-lg text-gray-600 dark:text-slate-400">
-                팀의 데이터 환경과 업무 흐름을 알려주시면,<br />
-                FlowOS가 구축 가능한 운영 체계를 함께 설계해드립니다.
+                솔루션을 함께 고민할 담당자가 6시간 안에 연락드리겠습니다.
               </p>
             </div>
 
@@ -431,22 +516,40 @@ export default function Home() {
                   />
                 </div>
 
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">전화번호</label>
+                    <input
+                      type="tel"
+                      placeholder="010-1234-5678"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">웹사이트</label>
+                    <input
+                      type="url"
+                      placeholder="https://www.example.com"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">현재 과제 또는 고민 *</label>
                   <textarea
                     rows={5}
-                    placeholder="현재 데이터 관리나 업무 프로세스에서 겪고 있는 어려움이나 개선하고 싶은 부분을 자유롭게 작성해주세요."
+                    placeholder="데이터 관리나 업무 프로세스에서 겪고 있는 어려움이나 개선하고 싶은 부분을 자유롭게 작성해주세요."
                     className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors resize-none"
                     maxLength={500}
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white text-lg font-medium hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105"
-                >
-                  플로우 시작하기 / Start your flow
-                </button>
+                <StarBorder as="button" type="submit" color="#06b6d4" className="w-full">
+                  <div className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white text-lg font-medium transition-all duration-300 transform hover:scale-105">
+                    플로우 시작하기 / Start your flow
+                  </div>
+                </StarBorder>
               </form>
             </div>
           </div>
@@ -459,26 +562,20 @@ export default function Home() {
           <p className="text-gray-600 dark:text-slate-400 mb-2">
             © FlowOS. Work in Flow. | anton@aeonstudioverse.com
           </p>
-          <p className="text-gray-600 dark:text-slate-400 mb-4">
+          <p className="text-gray-600 dark:text-slate-400">
             우리는 기업이 스스로 데이터로 일할 수 있는 운영 체계를 구축합니다.
           </p>
-          <a
-            href="https://readdy.ai/?origin=logo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
-          >
-            Powered by Readdy
-          </a>
         </div>
       </footer>
 
       {/* Floating Contact Button */}
       <div className="fixed bottom-8 right-8 z-50">
-        <button className="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-110 flex items-center gap-2">
-          <MessageCircle className="w-6 h-6" />
-          <span className="font-medium pr-2">Talk with Us</span>
-        </button>
+        <StarBorder as="button" color="#06b6d4">
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white p-4 rounded-xl shadow-2xl transition-all duration-300 hover:scale-110 flex items-center gap-2">
+            <MessageCircle className="w-6 h-6" />
+            <span className="font-medium pr-2">FlowOS 상담</span>
+          </div>
+        </StarBorder>
       </div>
     </div>
   );

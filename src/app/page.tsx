@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Marquee from '@/components/ui/marquee';
 import { FeatureCard } from '@/components/ui/feature-card';
 import { CTAButton } from '@/components/ui/cta-button';
 import AnimatedGradientText from '@/components/ui/animated-gradient-text';
@@ -15,8 +14,7 @@ import {
   MessageCircle,
   Sparkles,
   Zap,
-  Shield,
-  TrendingUp
+  Shield
 } from 'lucide-react';
 
 export default function Home() {
@@ -26,12 +24,22 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center">
+            {/* Light mode logo */}
             <Image
               src="/logo/logo-05-optimized.svg"
               alt="FlowOS Logo"
               width={200}
               height={50}
-              className="h-10 w-auto"
+              className="h-10 w-auto dark:hidden"
+              style={{ objectFit: 'contain', objectPosition: 'left center' }}
+            />
+            {/* Dark mode logo */}
+            <Image
+              src="/logo/logo-06-optimized.svg"
+              alt="FlowOS Logo"
+              width={200}
+              height={50}
+              className="h-10 w-auto hidden dark:block"
               style={{ objectFit: 'contain', objectPosition: 'left center' }}
             />
           </div>
@@ -104,46 +112,96 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="relative max-w-5xl mx-auto">
             <div className="grid grid-cols-3 gap-4">
+              {/* Blue Card - AI-Powered Workflow */}
               <div className="col-span-2 h-80 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 p-8 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                 <div>
-                  <div className="flex items-center gap-2 text-white/90 mb-2">
-                    <Sparkles className="w-5 h-5" />
-                    <span className="font-semibold">AI-Powered Workflow</span>
+                  <div className="flex items-center gap-2 text-white/90 mb-4">
+                    <Sparkles className="w-6 h-6" />
+                    <span className="text-base font-semibold">AI-Powered Workflow</span>
                   </div>
-                  <p className="text-white/70 text-sm">Intelligent automation for your business</p>
+                  <p className="text-white text-base leading-relaxed">
+                    손 쉽게 업무 효율을 높이고 성과를 극대화 하세요
+                  </p>
                 </div>
-                <div className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
                     <div className="flex items-center justify-between text-white">
-                      <span className="text-sm">데이터 분석</span>
-                      <Zap className="w-4 h-4" />
+                      <span className="text-sm leading-tight">데이터 접근성 - 활용성 확대</span>
+                      <Zap className="w-4 h-4 flex-shrink-0 ml-2" />
                     </div>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                    <span className="text-white text-sm leading-tight block">AI 기반 주요 업무 자동화</span>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                    <span className="text-white text-sm leading-tight block">업무 간 상호 연결 - 연속성 강화</span>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
                     <div className="flex items-center justify-between text-white">
-                      <span className="text-sm">AI 검증</span>
-                      <Shield className="w-4 h-4" />
+                      <span className="text-sm leading-tight">조직 데이터 안정성 확보</span>
+                      <div className="w-4 h-4 border-2 border-white rounded-full flex-shrink-0 ml-2" />
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* Purple Card - 조직 생산성 / 효율성 */}
               <div className="h-80 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 p-8 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                <div className="text-white/90 font-semibold">Performance</div>
-                <div className="text-center">
-                  <div className="text-5xl font-bold text-white mb-2">700%</div>
-                  <div className="text-white/70 text-sm">Efficiency Boost</div>
+                <h3 className="text-white font-semibold text-xl">조직 생산성 / 효율성</h3>
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="font-bold text-white leading-none">
+                      <span className="text-5xl">10</span>
+                      <span className="text-6xl">~30%</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="h-64 rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 p-6 flex items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                <div className="text-center text-white">
-                  <TrendingUp className="w-12 h-12 mx-auto mb-3" />
-                  <div className="font-semibold">Growth Analytics</div>
+
+              {/* Orange Card - 조직 운영 비용 / 리소스 */}
+              <div className="h-64 rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 p-6 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <h3 className="text-white font-semibold text-lg">조직 운영 비용 / 리소스</h3>
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="font-bold text-white leading-none">
+                      <span className="text-5xl">10</span>
+                      <span className="text-6xl">~30%</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col-span-2 h-64 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-600 p-6 flex items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                <div className="text-center text-white">
-                  <div className="text-3xl font-bold mb-2">Real-time Collaboration</div>
-                  <div className="text-white/80">팀과 함께 성장하는 AI 시스템</div>
+
+              {/* Green Card - Real-time Collaboration */}
+              <div className="col-span-2 h-64 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-600 p-6 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <div>
+                  <p className="text-white text-sm leading-relaxed mb-3">
+                    FlowOS와 더 빠르고, 효율적이고, 유연하게 일하세요. AI 가 데이터를 효율을, 효율을 성과로 바꿉니다.
+                  </p>
+                  <div className="text-center mb-4">
+                    <h3 className="text-white text-2xl font-bold">Real-time Collaboration</h3>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                    <p className="text-white text-sm leading-tight text-center">
+                      의사결정<br />타당성 강화
+                    </p>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                    <p className="text-white text-sm leading-tight text-center">
+                      프로젝트<br />리소스 절감
+                    </p>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                    <p className="text-white text-sm leading-tight text-center">
+                      개인 업무<br />처리량 증가
+                    </p>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                    <p className="text-white text-sm leading-tight text-center">
+                      제품 - 서비스<br />품질 향상
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -151,32 +209,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logo Marquee */}
-      <section className="py-12 border-y border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-900/30">
-        <div className="mb-6 text-center">
-          <h6 className="text-sm text-gray-600 dark:text-slate-400 uppercase tracking-wider">FlowOS 서비스 단계</h6>
-        </div>
-        <Marquee speed={30}>
-          <div className="flex items-center gap-12">
-            <div className="text-gray-700 dark:text-slate-500 text-2xl font-bold">데이터 구조 설계</div>
-            <div className="text-gray-700 dark:text-slate-500 text-2xl font-bold">•</div>
-            <div className="text-gray-700 dark:text-slate-500 text-2xl font-bold">AI 기반 검증 체계 구축</div>
-            <div className="text-gray-700 dark:text-slate-500 text-2xl font-bold">•</div>
-            <div className="text-gray-700 dark:text-slate-500 text-2xl font-bold">운영 자동화 구현</div>
-            <div className="text-gray-700 dark:text-slate-500 text-2xl font-bold">•</div>
-          </div>
-        </Marquee>
-      </section>
-
       {/* Value Proposition */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <blockquote className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8 text-center italic">
-            &ldquo;더 많은 기업들이 그들이 추구하는 가치에만 집중하기를 바랍니다.&rdquo;
+          <blockquote className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-8 text-center">
+            더 많은 기업들이 <span className="font-bold text-blue-600 dark:text-cyan-400">&apos;가치&apos;</span>에만 집중하기를 바랍니다.
           </blockquote>
-          <p className="text-xl text-gray-700 dark:text-slate-300 text-center">
-            우리는 데이터를 관리하지 않습니다.<br />
-            데이터를 통해 일의 흐름을 설계합니다.
+          <p className="text-xl text-gray-700 dark:text-slate-300 text-center leading-relaxed">
+            FlowOS가 전략 컨설팅과 분석에서 끝나지 않는 시스템 운영 파트너로서,<br />
+            AI와 사람이 함께 하는 새로운 업무의 흐름을 만들어드리겠습니다.
           </p>
         </div>
       </section>

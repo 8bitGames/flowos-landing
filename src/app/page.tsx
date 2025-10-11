@@ -156,7 +156,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-96 px-6 overflow-hidden min-h-screen bg-white dark:bg-slate-950">
+      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-32 sm:pb-48 md:pb-64 lg:pb-80 xl:pb-96 px-6 overflow-hidden min-h-screen bg-white dark:bg-slate-950">
         {/* Shader Animation Background */}
         <ShaderBackground className="opacity-50" />
         <div className="relative z-10 max-w-5xl mx-auto">
@@ -199,7 +199,7 @@ export default function Home() {
       </section>
 
       {/* Animated Grid Preview */}
-      <section className="pb-20 px-6 -mt-80">
+      <section className="pb-20 px-6 -mt-24 sm:-mt-40 md:-mt-56 lg:-mt-72 xl:-mt-80">
         <div className="max-w-5xl mx-auto">
           <div className="relative max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2">

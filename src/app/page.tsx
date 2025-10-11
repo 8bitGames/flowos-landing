@@ -13,6 +13,7 @@ import { TargetCarousel } from '@/components/ui/target-carousel';
 import { CountingNumber } from '@/components/ui/counting-number';
 import { GlowMenuItem } from '@/components/ui/glow-menu-item';
 import { ContactForm } from '@/components/ui/contact-form';
+import { FAQItem } from '@/components/ui/faq-item';
 import {
   MessageCircle,
   Sparkles,
@@ -40,6 +41,43 @@ import {
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const faqData = [
+    {
+      question: "FlowOS는 어떤 서비스인가요?",
+      answer: "FlowOS는 AI와 데이터 기반의 업무 자동화 및 운영 체제 구축 서비스입니다. 기업의 데이터를 발견·분석·연결하여 생산성을 높이고 비용을 절감하는 End-to-End 솔루션을 제공합니다."
+    },
+    {
+      question: "FlowOS를 도입하면 어떤 효과를 기대할 수 있나요?",
+      answer: "조직 생산성 30% 향상, 운영 비용 30% 절감, 데이터 기반 의사결정 강화, 반복 업무 자동화, AI 기반 프로세스 최적화 등의 효과를 기대할 수 있습니다."
+    },
+    {
+      question: "FlowOS는 기존 시스템과 어떻게 다른가요?",
+      answer: "FlowOS는 단순한 컨설팅이나 도구 제공에서 끝나지 않고, 데이터 구조화부터 워크플로우 설계, 시스템 개발, 운영까지 전 과정을 End-to-End로 지원하는 통합 솔루션입니다."
+    },
+    {
+      question: "FlowOS 도입에는 어느 정도의 시간이 소요되나요?",
+      answer: "프로젝트 규모와 범위에 따라 다르지만, 일반적으로 기업 현황 진단부터 시스템 운영까지 6단계의 프로세스를 거치며, 단계별 데모와 피드백을 통해 점진적으로 구축됩니다."
+    },
+    {
+      question: "FlowOS는 어떤 산업군에 적합한가요?",
+      answer: "어떤 산업, 어떤 기업이든 데이터가 쌓이는 곳이라면 FlowOS를 활용할 수 있습니다. 특히 데이터 기반 의사결정, 반복 업무 자동화, 프로세스 최적화가 필요한 모든 기업에 적합합니다."
+    },
+    {
+      question: "FlowOS 도입 후 운영은 어떻게 이루어지나요?",
+      answer: "시스템 구축 후에도 지속적으로 이용 피드백을 반영하고 기능을 업데이트합니다. FlowOS가 전략 컨설팅에서 끝나지 않는 시스템 운영 파트너로서 함께합니다."
+    },
+    {
+      question: "우리 회사에 맞는 맞춤형 솔루션이 가능한가요?",
+      answer: "네, FlowOS는 기업별 특성과 요구사항을 분석하여 맞춤형 솔루션을 설계하고 구축합니다. 기업 현황 진단부터 시작하여 귀사에 최적화된 시스템을 제공합니다."
+    },
+    {
+      question: "보안과 데이터 관리는 어떻게 되나요?",
+      answer: "조직 데이터 안정성 확보를 최우선으로 하며, 내부 자산화된 데이터의 체계적인 관리 및 업데이트를 위한 CONTEXT HUB를 구축합니다. 데이터 보안과 무결성을 보장합니다."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors">
       {/* Navigation */}
@@ -91,7 +129,7 @@ export default function Home() {
             </button>
 
             <ThemeToggle />
-            <CTAButton size="sm" href="#contact" className="hidden sm:flex">상담하기</CTAButton>
+            <CTAButton size="sm" href="#contact" className="hidden sm:flex">문의하기</CTAButton>
           </div>
         </div>
 
@@ -147,7 +185,7 @@ export default function Home() {
 
                 {/* Mobile CTA Button */}
                 <CTAButton size="lg" href="#contact" className="mt-4 w-full" onClick={() => setMobileMenuOpen(false)}>
-                  상담하기
+                  문의하기
                 </CTAButton>
               </div>
             </div>
@@ -190,7 +228,7 @@ export default function Home() {
               효율적으로 일할 수 있는 근본적인 성장 구조를 설계합니다.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 px-4 sm:px-0">
-              <CTAButton size="lg" href="#contact" className="w-full max-w-[340px] sm:min-w-[320px]">
+              <CTAButton size="lg" href="#contact" className="w-full max-w-[450px] sm:min-w-[420px]">
                 <AnimatedCTAText />
               </CTAButton>
             </div>
@@ -247,7 +285,7 @@ export default function Home() {
                 <div>
                   <div className="flex items-center gap-2 text-white/90 mb-3">
                     <Users className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold">Productivity / Efficiency.</h3>
+                    <h3 className="text-2xl font-bold">Productivity / Efficiency</h3>
                   </div>
                   <p className="text-white text-sm leading-relaxed">
                     조직 생산성과 업무 효율을 높일 수 있습니다.
@@ -265,7 +303,7 @@ export default function Home() {
                 <div>
                   <div className="flex items-center gap-2 text-white/90 mb-3">
                     <DollarSign className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold">Cost / Resource.</h3>
+                    <h3 className="text-2xl font-bold">Cost / Resource</h3>
                   </div>
                   <p className="text-white text-sm leading-relaxed">
                     조직 운영 비용과 투입 리소스를 절감해보세요.
@@ -273,7 +311,7 @@ export default function Home() {
                 </div>
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <CountingNumber start={30} end={10} duration={2000} suffix="%" />
+                    <CountingNumber start={10} end={30} duration={2000} prefix="-" suffix="%" />
                   </div>
                 </div>
               </div>
@@ -283,7 +321,7 @@ export default function Home() {
                 <div>
                   <div className="flex items-center gap-2 text-white/90 mb-3">
                     <MonitorCog className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold">With Data & AI Based System.</h3>
+                    <h3 className="text-2xl font-bold">With Data & AI Based System</h3>
                   </div>
                   <p className="text-white text-sm leading-relaxed mb-4">
                     FlowOS와 더 빠르고, 효율적이고, 유연하게 일하세요.<br />
@@ -348,7 +386,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              FlowOS 는 이런 서비스를 제공합니다.
+              FlowOS 는 어떤 서비스를 제공하나요?
             </h2>
             <p className="text-xl text-gray-600 dark:text-slate-400">What FlowOS provides.</p>
           </div>
@@ -402,6 +440,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-green-500/5 dark:to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           </div>
+
+          <p className="text-center text-xl text-gray-700 dark:text-slate-300 mt-12">
+            FlowOS는 국내에서 AI 기반의 데이터 운영 체제 구축을 제공하는 대표 기업입니다.
+          </p>
         </div>
       </section>
 
@@ -410,18 +452,17 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              FlowOS 가 기업의 성장을 돕는 과정입니다.
+              FlowOS 서비스는 어떤 과정과 절차로 제공되나요?
             </h2>
             <p className="text-xl text-gray-600 dark:text-slate-400">
+              FlowOS는 조직이 데이터 기반으로 일할 수 있는 구조를 구축하며,<br />
               성과 및 효율 개선을 위한 End-To-End 를 함께합니다.
             </p>
           </div>
 
           {/* Horizontal Scroll Container */}
-          <div className="relative overflow-x-auto pb-8 mb-12">
-            {/* Fade-out gradient hint on the right */}
-            <div className="absolute top-0 right-0 bottom-8 w-16 sm:w-24 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none z-10" />
-            <div className="flex items-center gap-4 min-w-max px-4">
+          <div className="relative pb-8 mb-12 overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-4 px-4 justify-center">
               {/* Step 1 - Diagnose */}
               <div className="flex flex-col items-center">
                 <p className="text-sm text-[#00268B] dark:text-[#5B8DEF] font-bold mb-2">STEP</p>
@@ -435,7 +476,7 @@ export default function Home() {
               </div>
 
               {/* Arrow 1 */}
-              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0" />
+              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0 rotate-90 md:rotate-0" />
 
               {/* Step 2 - Design */}
               <div className="flex flex-col items-center">
@@ -450,7 +491,7 @@ export default function Home() {
               </div>
 
               {/* Arrow 2 */}
-              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0" />
+              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0 rotate-90 md:rotate-0" />
 
               {/* Step 3 - Propose */}
               <div className="flex flex-col items-center">
@@ -465,7 +506,7 @@ export default function Home() {
               </div>
 
               {/* Arrow 3 */}
-              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0" />
+              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0 rotate-90 md:rotate-0" />
 
               {/* Step 4 - Demo */}
               <div className="flex flex-col items-center">
@@ -480,7 +521,7 @@ export default function Home() {
               </div>
 
               {/* Arrow 4 */}
-              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0" />
+              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0 rotate-90 md:rotate-0" />
 
               {/* Step 5 - Develop */}
               <div className="flex flex-col items-center">
@@ -495,7 +536,7 @@ export default function Home() {
               </div>
 
               {/* Arrow 5 */}
-              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0" />
+              <ChevronRight className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0 rotate-90 md:rotate-0" />
 
               {/* Step 6 - Update */}
               <div className="flex flex-col items-center">
@@ -510,10 +551,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <p className="text-center text-xl text-gray-700 dark:text-slate-300">
-            FlowOS는 조직이 스스로 데이터로 일할 수 있는 구조를 구축하도록 돕습니다.
-          </p>
         </div>
       </section>
 
@@ -554,52 +591,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section id="stats" className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
+      {/* FAQ Section */}
+      <section id="stats" className="py-20 px-6 bg-gray-50 dark:bg-slate-900/30">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              도입 사례
+              자주 묻는 질문
             </h2>
-            <p className="text-lg text-gray-600 dark:text-slate-400 mb-2">
-              지금 이순간에도 기업들은 FlowOS 와 함께합니다.
-            </p>
             <p className="text-lg text-gray-600 dark:text-slate-400">
-              이제는 당신이 비즈니스를 성장시킬 차례입니다.
+              FlowOS에 대해 궁금한 점을 확인해보세요.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-gradient-to-br from-[#00268B]/5 to-[#0099CC]/10 dark:from-[#5B8DEF]/20 dark:to-slate-900 rounded-2xl border border-[#00268B]/20 dark:border-[#5B8DEF]/30 transition-all duration-300 hover:shadow-2xl hover:scale-105">
-              <div className="text-6xl font-bold bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] bg-clip-text text-transparent mb-4">
-                98%
-              </div>
-             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">G 글로벌 스타트업</h3>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-slate-300">
-                전력 소비-기후 데이터 활용AI 기반<br/>태양광 발전 효율화 시스템 설계 및 개발
-              </p>
-            </div>
-
-            <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-slate-900 rounded-2xl border border-purple-200 dark:border-purple-500/30 transition-all duration-300 hover:shadow-2xl hover:scale-105">
-              <div className="text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-4">
-                3x
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">C 기업</h3>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-slate-300">
-                고객 영업-서비스 제공 데이터 활용<br/>AI 기반 영업-운영 반자동화 시스템 구축
-              </p>
-            </div>
-
-            <div className="text-center p-8 bg-gradient-to-br from-[#0099CC]/5 to-[#00268B]/10 dark:from-[#00D4FF]/20 dark:to-slate-900 rounded-2xl border border-[#0099CC]/20 dark:border-[#00D4FF]/30 transition-all duration-300 hover:shadow-2xl hover:scale-105">
-              <div className="text-6xl font-bold bg-gradient-to-r from-[#0099CC] to-[#00268B] dark:from-[#00D4FF] dark:to-[#5B8DEF] bg-clip-text text-transparent mb-4">
-                2x
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">K 광고대행사</h3>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-slate-300">
-                소비자 컨텐츠 반응 데이터 활용<br/>광고물 적정성-노출도 스코어링 시스템 구축
-              </p>
-            </div>
+          <div className="bg-white dark:bg-slate-800/50 rounded-2xl border border-gray-200 dark:border-slate-700 shadow-lg overflow-hidden">
+            {faqData.map((faq, index) => (
+              <FAQItem
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openFaqIndex === index}
+                onToggle={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+              />
+            ))}
           </div>
+
+          {/* JSON-LD Structured Data */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": faqData.map(faq => ({
+                  "@type": "Question",
+                  "name": faq.question,
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.answer
+                  }
+                }))
+              })
+            }}
+          />
         </div>
       </section>
 
@@ -616,9 +649,19 @@ export default function Home() {
                 성과 개선도 좋고, 비용 감축도 좋습니다.<br />
                 FlowOS 가 당신의 파트너가 되어드리겠습니다.
               </p>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400">
+              <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400 mb-6">
                 솔루션을 함께 고민할 담당자가 6시간 안에 연락드리겠습니다.
               </p>
+              <div className="flex justify-center">
+                <a
+                  href="https://featpaper.com/l/cqcHs4v1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-7 py-4 text-lg bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
+                >
+                  서비스 소개서 받기
+                </a>
+              </div>
             </div>
 
             <ContactForm />
@@ -643,7 +686,7 @@ export default function Home() {
         <StarBorder as="button" color="#0099CC">
           <div className="bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] text-white p-3 sm:p-4 rounded-xl shadow-[0_10px_40px_rgba(0,38,139,0.3)] dark:shadow-[0_0_40px_rgba(91,141,239,0.5)] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center gap-2">
             <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
-            <span className="font-medium pr-1 sm:pr-2 hidden sm:inline">FlowOS 상담</span>
+            <span className="font-medium pr-1 sm:pr-2 hidden sm:inline">FlowOS 문의</span>
           </div>
         </StarBorder>
       </a>

@@ -12,49 +12,50 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.GOOGLE_SHEETS_API_KEY;
-    const sheetId = process.env.GOOGLE_SHEET_ID;
-
-    if (!apiKey || !sheetId) {
-      console.error('Missing environment variables');
-      return NextResponse.json(
-        { status: 'error', message: '서버 설정 오류입니다.' },
-        { status: 500 }
-      );
-    }
+    // Google Apps Script URL
+    const appsScriptUrl = 'https://script.google.com/macros/s/AKfycby7jbpwyZ8GUQ7kzfs2-9h45VE4iO7LYBSKImVHqTV9DqWQGtxshsoi5pSDDiIKs6Uk/exec';
 
     // 현재 시간 (한국 시간)
     const now = new Date();
     const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
     const timestamp = koreanTime.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
 
-    // Google Sheets에 데이터 추가
-    const values = [[
-      body.name,
-      body.company,
-      body.email,
-      body.phone,
-      body.website || '',
-      body.message,
-      timestamp
-    ]];
+    // Google Apps Script로 데이터 전송
+    const payload = {
+      name: body.name,
+      company: body.company,
+      email: body.email,
+      phone: body.phone,
+      website: body.website || '',
+      message: body.message,
+      timestamp: timestamp
+    };
 
-    const appendUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1!A:G:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
+    console.log('Sending to Apps Script:', payload);
 
-    const response = await fetch(appendUrl, {
+    const response = await fetch(appsScriptUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        values: values
-      })
+      body: JSON.stringify(payload),
+      redirect: 'follow'
     });
 
+    console.log('Apps Script response status:', response.status);
+
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Google Sheets API error:', errorData);
-      throw new Error(`Google Sheets API 오류: ${response.status}`);
+      const errorText = await response.text();
+      console.error('Apps Script error response:', errorText);
+      throw new Error(`Apps Script returned status ${response.status}`);
+    }
+
+    // Apps Script 응답 파싱
+    const result = await response.json();
+    console.log('Apps Script result:', result);
+
+    if (result.status === 'error') {
+      throw new Error(result.message || 'Apps Script에서 에러가 발생했습니다.');
     }
 
     return NextResponse.json({

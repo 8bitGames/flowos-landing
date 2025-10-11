@@ -6,6 +6,7 @@ interface CountingNumberProps {
   start: number;
   end: number;
   duration?: number; // 애니메이션 지속 시간 (ms)
+  prefix?: string;
   suffix?: string;
   repeatInterval?: number; // 반복 간격 (ms)
 }
@@ -14,6 +15,7 @@ export function CountingNumber({
   start,
   end,
   duration = 2000,
+  prefix = '',
   suffix = '',
   repeatInterval = 10000
 }: CountingNumberProps) {
@@ -109,7 +111,7 @@ export function CountingNumber({
         className="text-6xl inline-block transition-transform duration-100"
         style={{ transform: `scale(${scale})` }}
       >
-        {displayValue}{suffix}
+        {prefix}{displayValue}{suffix}
       </span>
     </div>
   );

@@ -195,7 +195,7 @@ export function ContactForm() {
 
         <StarBorder as="button" type="submit" color="#06b6d4" className="w-full" disabled={isSubmitting}>
           <div className={`w-full px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white text-lg font-medium transition-all duration-300 transform ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}>
-            {isSubmitting ? '전송 중...' : '플로우 시작하기 / Start your flow'}
+            {isSubmitting ? '전송 중...' : '문의 제출하기'}
           </div>
         </StarBorder>
       </form>

@@ -298,12 +298,20 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3b82f6, #06b6d4);
+  background: linear-gradient(to bottom, #00268B, #0099CC);
   border-radius: 5px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #5B8DEF, #00D4FF);
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #2563eb, #0891b2);
+  background: linear-gradient(to bottom, #003BB5, #00B8E6);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #7BA4FF, #1AE4FF);
 }
 
 /* Animate on scroll */
@@ -404,4 +412,24 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Text Selection */
+::selection {
+  background-color: rgba(0, 38, 139, 0.2);
+  color: #000000;
+}
+
+.dark ::selection {
+  background-color: rgba(91, 141, 239, 0.3);
+  color: #FFFFFF;
+}
+
+/* Placeholder */
+::placeholder {
+  color: rgba(0, 38, 139, 0.4);
+}
+
+.dark ::placeholder {
+  color: rgba(91, 141, 239, 0.5);
 }

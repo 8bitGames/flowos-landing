@@ -6,9 +6,11 @@ import { useTheme } from 'next-themes';
 interface GlowMenuItemProps {
   href: string;
   children: React.ReactNode;
+  target?: string;
+  rel?: string;
 }
 
-export function GlowMenuItem({ href, children }: GlowMenuItemProps) {
+export function GlowMenuItem({ href, children, target, rel }: GlowMenuItemProps) {
   const { theme } = useTheme();
 
   // Animation variants for the front text
@@ -32,6 +34,8 @@ export function GlowMenuItem({ href, children }: GlowMenuItemProps) {
   return (
     <motion.a
       href={href}
+      target={target}
+      rel={rel}
       className="relative inline-block cursor-pointer select-none"
       style={{ perspective: '1000px' }}
       initial="initial"

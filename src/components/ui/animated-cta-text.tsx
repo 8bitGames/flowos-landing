@@ -7,16 +7,35 @@ export function AnimatedCTAText() {
   const [phase, setPhase] = useState<'increase' | 'decrease'>('increase');
   const [number, setNumber] = useState(10);
   const [isHolding, setIsHolding] = useState(false);
+  const [startTime, setStartTime] = useState<number | null>(null);
 
-  // 숫자 증가 애니메이션 (10→30)
+  // 숫자 증가 애니메이션 (10→30) with easing
   useEffect(() => {
-    if (!isHolding && number < 30) {
-      const timer = setTimeout(() => {
-        setNumber((prev) => prev + 1);
-      }, 100);
-      return () => clearTimeout(timer);
+    if (isHolding) return;
+
+    if (startTime === null) {
+      setStartTime(Date.now());
     }
-  }, [number, isHolding]);
+
+    if (number < 30) {
+      const timer = requestAnimationFrame(() => {
+        const elapsed = Date.now() - (startTime || Date.now());
+        const duration = 2000; // 2초
+        const progress = Math.min(elapsed / duration, 1);
+
+        // easeOutCubic: 끝으로 갈수록 서서히 느려지는 효과
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+        const current = 10 + 20 * easeProgress; // 10 + (30-10) * easeProgress
+
+        const newNumber = Math.floor(current);
+        if (newNumber !== number && newNumber <= 30) {
+          setNumber(newNumber);
+        }
+      });
+      return () => cancelAnimationFrame(timer);
+    }
+  }, [number, isHolding, startTime]);
 
   // 30 도달 시 3초간 홀드 후 페이즈 전환
   useEffect(() => {
@@ -25,13 +44,13 @@ export function AnimatedCTAText() {
       const holdTimer = setTimeout(() => {
         setIsHolding(false);
         setNumber(10);
+        setStartTime(null); // 타이머 리셋
         setPhase((prev) => (prev === 'increase' ? 'decrease' : 'increase'));
       }, 3000);
 
-      // 이 timer는 cleanup하지 않음 - 반드시 완료되어야 함
-      return () => {}; // no-op cleanup
+      return () => clearTimeout(holdTimer);
     }
-  }, [number]);
+  }, [number, isHolding]);
 
   // 숫자 크기 계산: 10일 때 1.0, 30일 때 1.3
   const scale = 1 + (number - 10) * 0.015;

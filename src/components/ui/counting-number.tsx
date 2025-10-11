@@ -50,12 +50,19 @@ export function CountingNumber({
 
     const animate = () => {
       const range = end - start;
-      const increment = range / (duration / 16); // 60fps 기준
-      let current = start;
+      const startTime = Date.now();
 
       const timer = setInterval(() => {
-        current += increment;
-        if (current >= end) {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // easeOutCubic: 더 부드럽게 느려지는 효과
+        // progress^3을 사용하여 점진적으로 감속
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+        const current = start + range * easeProgress;
+
+        if (progress >= 1) {
           setCount(end);
           clearInterval(timer);
         } else {
@@ -88,8 +95,13 @@ export function CountingNumber({
   }, [hasStarted, start, end, duration, repeatInterval]);
 
   // 숫자가 커질수록 크기도 증가 (10 -> 30: 1.0배 -> 1.3배)
-  const progress = (count - start) / (end - start);
+  // 감소하는 경우도 동일하게 처리 (30 -> 10: 1.3배 -> 1.0배)
+  const progress = Math.abs((count - start) / (end - start));
   const scale = 1 + progress * 0.3;
+
+  // 감소하는 경우 마이너스 기호 표시
+  const isDecreasing = end < start;
+  const displayValue = isDecreasing ? `-${count}` : count;
 
   return (
     <div ref={elementRef} className="font-bold text-white leading-none">
@@ -97,7 +109,7 @@ export function CountingNumber({
         className="text-6xl inline-block transition-transform duration-100"
         style={{ transform: `scale(${scale})` }}
       >
-        {count}{suffix}
+        {displayValue}{suffix}
       </span>
     </div>
   );

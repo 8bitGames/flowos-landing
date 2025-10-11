@@ -11,19 +11,30 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
 
 const targetCompanies = [
-  '매장 방문 고객 데이터를\n판매 성과로 연결하고 싶으신 기업.',
-  '온라인 소비자 행동 데이터를\n브랜딩에 활용하고 싶으신 기업.',
-  '서비스 이용 데이터를 활용한\nAI 기반 영업 자동화가 필요하신 기업.',
-  '고객 응대 데이터를 기반으로\nCS 효율화를 희망하시는 기업.',
-  '물류 데이터를 분석하여\n배송 운영 최적화를 목표로 하시는 기업.',
-  '주문 데이터를 기반으로\n생산 라인을 최적화 하고자 하시는 기업.',
-  '고객 구매 행동 데이터를 기반으로\n마케팅 성과 개선이 필요하신 기업.',
-  '직원 근태 데이터를 활용하여\n인력 운용 효율을 강화하고 싶으신 기업.',
+  '**매장 방문 고객 데이터**를\n판매 성과로 연결하려면 어떻게 해야할까요?',
+  '**온라인 소비자 행동 데이터**를\n브랜딩에 활용하려면 어떻게 해야할까요?',
+  '**서비스 이용 데이터**를 활용해서\nAI 기반 영업 자동화가 가능할까요?',
+  '**고객 응대 데이터**를 기반으로\nCS 효율화를 하려면 어떤 방법이 있을까요?',
+  '**물류 데이터**를 수집하고 분석해서,\n배송 운영 최적화를 목표로 하고 싶어요.',
+  '**공장 주문 데이터**를 기반으로\n생산 라인을 최적화 할 수 있을까요?',
+  '**고객 구매 행동 데이터**를 기반으로\n어떻게 마케팅 성과를 개선할 수 있을까요?',
+  '**직원 근태 데이터**를 활용하여\n인력 운용 효율을 강화하고 싶어요.',
 ];
+
+// ** 마크다운을 볼드 태그로 변환하는 함수
+function parseBoldText(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
 
 export function TargetCarousel() {
   return (
-    <div className="w-full max-w-6xl mx-auto px-6">
+    <div className="w-full max-w-6xl mx-auto px-6 overflow-visible">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         grabCursor={true}
@@ -62,9 +73,9 @@ export function TargetCarousel() {
       >
         {targetCompanies.map((text, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full h-full rounded-2xl border-2 p-6 flex items-center justify-center transition-all duration-300 hover:shadow-2xl swiper-slide-card">
+            <div className="w-full h-full rounded-2xl border-2 p-4 flex items-center justify-center transition-all duration-300 hover:shadow-2xl swiper-slide-card">
               <p className="text-base leading-relaxed font-semibold whitespace-pre-line text-center">
-                {text}
+                {parseBoldText(text)}
               </p>
             </div>
           </SwiperSlide>
@@ -126,14 +137,30 @@ export function TargetCarousel() {
         .target-swiper .swiper-button-prev,
         .target-swiper .swiper-button-next {
           color: #3b82f6;
-          width: 40px;
-          height: 40px;
+          width: 50px;
+          height: 50px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+        }
+
+        .target-swiper .swiper-button-prev {
+          left: -60px;
+        }
+
+        .target-swiper .swiper-button-next {
+          right: -60px;
         }
 
         .target-swiper .swiper-button-prev:after,
         .target-swiper .swiper-button-next:after {
-          font-size: 20px;
+          font-size: 24px;
           font-weight: bold;
+        }
+
+        .dark .target-swiper .swiper-button-prev,
+        .dark .target-swiper .swiper-button-next {
+          color: #06b6d4;
         }
 
         @media (max-width: 768px) {

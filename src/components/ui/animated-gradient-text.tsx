@@ -9,7 +9,7 @@ interface AnimatedGradientTextProps {
 
 export default function AnimatedGradientText({ children, className = '' }: AnimatedGradientTextProps) {
   return (
-    <span className={`bg-gradient-to-r from-blue-600 via-cyan-600 to-purple-600 dark:from-blue-400 dark:via-cyan-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] ${className}`}>
+    <span className={`bg-gradient-to-r from-[#00268B] via-[#0047AB] to-[#0099CC] dark:from-[#5B8DEF] dark:via-[#7BA4FF] dark:to-[#00D4FF] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] ${className}`}>
       {children}
     </span>
   );

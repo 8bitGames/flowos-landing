@@ -56,7 +56,7 @@ export function AnimatedCTAText() {
   const scale = 1 + (number - 10) * 0.015;
 
   return (
-    <span className="inline-block w-full text-center">
+    <span className="inline-block text-center sm:whitespace-nowrap">
       <AnimatePresence mode="wait">
         <motion.span
           key={phase}
@@ -66,15 +66,15 @@ export function AnimatedCTAText() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
-          기업의 {phase === 'increase' ? '성과를' : '비용을'}{' '}
+          <span className="sm:inline">기업의 {phase === 'increase' ? '성과를' : '비용을'}</span>
+          <br className="sm:hidden" />
           <motion.span
             className="inline-block w-14 text-center"
             animate={{ scale }}
             transition={{ duration: 0.1, ease: 'easeOut' }}
           >
             {number}%
-          </motion.span>{' '}
-          {phase === 'increase' ? '늘려보세요' : '낮춰보세요'}
+          </motion.span> {phase === 'increase' ? '늘려보세요' : '낮춰보세요'}
         </motion.span>
       </AnimatePresence>
     </span>

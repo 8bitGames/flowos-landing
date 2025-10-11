@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import { CTAButton } from '@/components/ui/cta-button';
 import AnimatedGradientText from '@/components/ui/animated-gradient-text';
@@ -32,15 +33,18 @@ import {
   ChevronRight,
   Pencil,
   MonitorPlay,
-  Wrench
+  Wrench,
+  Menu,
+  X
 } from 'lucide-react';
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
           <div className="flex items-center">
             {/* Light mode logo */}
             <Image
@@ -48,7 +52,7 @@ export default function Home() {
               alt="FlowOS Logo"
               width={200}
               height={50}
-              className="h-10 w-auto dark:hidden"
+              className="h-8 sm:h-10 w-auto dark:hidden"
               style={{ objectFit: 'contain', objectPosition: 'left center' }}
             />
             {/* Dark mode logo */}
@@ -57,10 +61,12 @@ export default function Home() {
               alt="FlowOS Logo"
               width={200}
               height={50}
-              className="h-10 w-auto hidden dark:block"
+              className="h-8 sm:h-10 w-auto hidden dark:block"
               style={{ objectFit: 'contain', objectPosition: 'left center' }}
             />
           </div>
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 text-sm">
             <GlowMenuItem href="#features">Feature</GlowMenuItem>
             <GlowMenuItem href="#benefits">Services</GlowMenuItem>
@@ -68,11 +74,85 @@ export default function Home() {
             <GlowMenuItem href="https://flowos.inblog.io/" target="_blank" rel="noopener noreferrer">Blog</GlowMenuItem>
             <GlowMenuItem href="#contact">Contact</GlowMenuItem>
           </div>
-          <div className="flex items-center gap-4">
+
+          {/* Right Side - Mobile Hamburger + Theme + CTA */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 text-gray-700 dark:text-slate-300" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-700 dark:text-slate-300" />
+              )}
+            </button>
+
             <ThemeToggle />
-            <CTAButton size="sm" href="#contact">상담하기</CTAButton>
+            <CTAButton size="sm" href="#contact" className="hidden sm:flex">상담하기</CTAButton>
           </div>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden z-40"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            {/* Mobile Menu */}
+            <div className="fixed top-[73px] left-0 right-0 bg-white dark:bg-slate-950 border-b border-gray-200 dark:border-slate-800 md:hidden z-40 animate-slide-down">
+              <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col gap-4">
+                <a
+                  href="#features"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                >
+                  Feature
+                </a>
+                <a
+                  href="#benefits"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                >
+                  Services
+                </a>
+                <a
+                  href="#stats"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                >
+                  UseCase
+                </a>
+                <a
+                  href="https://flowos.inblog.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                >
+                  Blog
+                </a>
+                <a
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                >
+                  Contact
+                </a>
+
+                {/* Mobile CTA Button */}
+                <CTAButton size="lg" href="#contact" className="mt-4 w-full" onClick={() => setMobileMenuOpen(false)}>
+                  상담하기
+                </CTAButton>
+              </div>
+            </div>
+          </>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -82,12 +162,12 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="text-center space-y-4">
             <h1 className="font-bold space-y-0">
-              <div className="text-[3.375rem] md:text-[5.4rem] leading-tight">
+              <div className="text-[2.8rem] sm:text-[3.375rem] md:text-[5.4rem] leading-[1.1] tracking-tight">
                 <AnimatedGradientText>
                   WORK IN FLOW
                 </AnimatedGradientText>
               </div>
-              <div className="text-[2.15rem] md:text-[3.4rem] -mt-2">
+              <div className="text-[1.8rem] sm:text-[2.15rem] md:text-[3.4rem] -mt-2 leading-[1.1] tracking-tight">
                 <AnimatedGradientText>
                   WHERE DATA MEETS AI.
                 </AnimatedGradientText>
@@ -101,16 +181,16 @@ export default function Home() {
                 FlowOS is an AI-powered operating system for business workflows.
               </p>
             </div>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto !mt-6">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto !mt-6 px-2">
               우리는 AI와 함께 기업이 가진 데이터를{' '}
-              <span className="inline-block w-20 text-center">
-                <RollingText words={['발견', '분석', '연결']} interval={2000} className="text-[#00268B] dark:text-[#7BA4FF] text-[1.27rem] md:text-[1.38rem] font-extrabold" />
+              <span className="inline-block w-16 sm:w-20 text-center">
+                <RollingText words={['발견', '분석', '연결']} interval={2000} className="text-[#00268B] dark:text-[#7BA4FF] text-[1.1rem] sm:text-[1.27rem] md:text-[1.38rem] font-extrabold" />
               </span>{' '}
-              하고,<br />
+              하고,<br className="hidden sm:block" />{' '}
               효율적으로 일할 수 있는 근본적인 성장 구조를 설계합니다.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <CTAButton size="lg" href="#contact" className="min-w-[320px]">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 px-4 sm:px-0">
+              <CTAButton size="lg" href="#contact" className="w-full max-w-[340px] sm:min-w-[320px]">
                 <AnimatedCTAText />
               </CTAButton>
             </div>
@@ -134,29 +214,29 @@ export default function Home() {
                     손 쉽게 업무 효율을 높이고 성과를 극대화 하세요
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4">
                     <div className="flex items-center justify-between text-white">
-                      <span className="text-sm leading-tight font-bold">데이터 접근성 - 활용성 확대</span>
-                      <Zap className="w-4 h-4 flex-shrink-0 ml-2" />
+                      <span className="text-xs sm:text-sm leading-tight font-bold">데이터 접근성-활용성 확대</span>
+                      <Zap className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />
                     </div>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4">
                     <div className="flex items-center justify-between text-white">
-                      <span className="text-sm leading-tight font-bold">AI 기반 주요 업무 자동화</span>
-                      <Sparkles className="w-4 h-4 flex-shrink-0 ml-2" />
+                      <span className="text-xs sm:text-sm leading-tight font-bold">AI 기반 주요 업무 자동화</span>
+                      <Sparkles className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />
                     </div>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4">
                     <div className="flex items-center justify-between text-white">
-                      <span className="text-sm leading-tight font-bold">업무 간 상호 연결 - 연속성 강화</span>
-                      <Link className="w-4 h-4 flex-shrink-0 ml-2" />
+                      <span className="text-xs sm:text-sm leading-tight font-bold">업무 간 상호 연결-연속성 강화</span>
+                      <Link className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />
                     </div>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4">
                     <div className="flex items-center justify-between text-white">
-                      <span className="text-sm leading-tight font-bold">조직 데이터 안정성 확보</span>
-                      <Shield className="w-4 h-4 flex-shrink-0 ml-2" />
+                      <span className="text-xs sm:text-sm leading-tight font-bold">조직 데이터 안정성 확보</span>
+                      <Shield className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />
                     </div>
                   </div>
                 </div>
@@ -210,36 +290,36 @@ export default function Home() {
                     AI가 데이터를 효율로, 효율을 성과로 바꿉니다.
                   </p>
                 </div>
-                <div className="grid grid-cols-4 gap-2">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div className="flex flex-col items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-white" />
-                      <p className="text-white text-sm leading-tight text-center font-bold">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 sm:p-3">
+                    <div className="flex flex-col items-center gap-1 sm:gap-2">
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                      <p className="text-white text-xs sm:text-sm leading-tight text-center font-bold">
                         의사결정<br />타당성 강화
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div className="flex flex-col items-center gap-2">
-                      <TrendingDown className="w-5 h-5 text-white" />
-                      <p className="text-white text-sm leading-tight text-center font-bold">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 sm:p-3">
+                    <div className="flex flex-col items-center gap-1 sm:gap-2">
+                      <TrendingDown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                      <p className="text-white text-xs sm:text-sm leading-tight text-center font-bold">
                         프로젝트<br />리소스 절감
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div className="flex flex-col items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-white" />
-                      <p className="text-white text-sm leading-tight text-center font-bold">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 sm:p-3">
+                    <div className="flex flex-col items-center gap-1 sm:gap-2">
+                      <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                      <p className="text-white text-xs sm:text-sm leading-tight text-center font-bold">
                         개인 업무<br />처리량 증가
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <div className="flex flex-col items-center gap-2">
-                      <Award className="w-5 h-5 text-white" />
-                      <p className="text-white text-sm leading-tight text-center font-bold">
-                        제품 - 서비스<br />품질 향상
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 sm:p-3">
+                    <div className="flex flex-col items-center gap-1 sm:gap-2">
+                      <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                      <p className="text-white text-xs sm:text-sm leading-tight text-center font-bold">
+                        제품-서비스<br />품질 향상
                       </p>
                     </div>
                   </div>
@@ -253,11 +333,11 @@ export default function Home() {
       {/* Value Proposition */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <blockquote className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-8 text-center">
+          <blockquote className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 dark:text-white mb-8 text-center px-4">
             더 많은 기업들이 <span className="font-bold text-[#00268B] dark:text-[#5B8DEF]">&apos;가치&apos;</span>에만 집중하기를 바랍니다.
           </blockquote>
-          <p className="text-2xl text-gray-700 dark:text-slate-300 text-center leading-relaxed">
-            FlowOS가 전략 컨설팅과 분석에서 끝나지 않는 시스템 운영 파트너로서,<br />
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-slate-300 text-center leading-relaxed px-4">
+            FlowOS가 전략 컨설팅과 분석에서 끝나지 않는 시스템 운영 파트너로서,<br className="hidden sm:block" />
             AI와 사람이 함께 하는 새로운 업무의 흐름을 만들어드리겠습니다.
           </p>
         </div>
@@ -277,10 +357,10 @@ export default function Home() {
             <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-4">
-                  <Lightbulb className="w-12 h-12 text-[#00268B] dark:text-[#5B8DEF]" />
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">업무 프로세스 컨설팅</h3>
+                  <Lightbulb className="w-10 h-10 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">업무 프로세스 컨설팅</h3>
                 </div>
-                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Operational process consulting</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Operational process consulting</p>
                 <p className="text-sm text-gray-700 dark:text-slate-300">업무상의 문제를 정의하고 개선 포인트를 제안합니다.<br />기획, 디자인, 운영에 따른 로드맵을 구성합니다.</p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-blue-500/5 dark:to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -289,10 +369,10 @@ export default function Home() {
             <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-4">
-                  <Database className="w-12 h-12 text-purple-600 dark:text-purple-400" />
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">데이터 수집 및 구조화</h3>
+                  <Database className="w-10 h-10 sm:w-12 sm:h-12 text-purple-600 dark:text-purple-400" />
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">데이터 수집 및 구조화</h3>
                 </div>
-                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Data collection and structuring</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Data collection and structuring</p>
                 <p className="text-sm text-gray-700 dark:text-slate-300">분석의 기반이 되는 업무 데이터를 내부 자산화하고,<br />체계적인 관리 및 업데이트를 위한 CONTEXT HUB를 구축합니다.</p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-purple-500/5 dark:to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -301,10 +381,10 @@ export default function Home() {
             <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-4">
-                  <Workflow className="w-12 h-12 text-[#0099CC] dark:text-[#00D4FF]" />
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">워크플로우 디자인 설계</h3>
+                  <Workflow className="w-10 h-10 sm:w-12 sm:h-12 text-[#0099CC] dark:text-[#00D4FF]" />
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">워크플로우 디자인 설계</h3>
                 </div>
-                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Workflow design and architecture</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">Workflow design and architecture</p>
                 <p className="text-sm text-gray-700 dark:text-slate-300">반복 업무 자동화부터 전반의 프로세스를 최적화합니다.<br />부분적으로 AI 어시스턴트를 도입하여 효율화합니다.</p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-cyan-500/5 dark:to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -313,10 +393,10 @@ export default function Home() {
             <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-4">
-                  <Code className="w-12 h-12 text-green-600 dark:text-green-400" />
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-white">업무 시스템 개발 운영</h3>
+                  <Code className="w-10 h-10 sm:w-12 sm:h-12 text-green-600 dark:text-green-400" />
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">업무 시스템 개발 운영</h3>
                 </div>
-                <p className="text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">System development and management</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">System development and management</p>
                 <p className="text-sm text-gray-700 dark:text-slate-300">기능별 데모 제공 및 주기적으로 피드백을 반영합니다.<br />기업 맞춤형 솔루션을 구축하고 관리합니다.</p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-green-500/5 dark:to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -339,6 +419,8 @@ export default function Home() {
 
           {/* Horizontal Scroll Container */}
           <div className="relative overflow-x-auto pb-8 mb-12">
+            {/* Fade-out gradient hint on the right */}
+            <div className="absolute top-0 right-0 bottom-8 w-16 sm:w-24 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none z-10" />
             <div className="flex items-center gap-4 min-w-max px-4">
               {/* Step 1 - Diagnose */}
               <div className="flex flex-col items-center">
@@ -493,8 +575,8 @@ export default function Home() {
                 98%
               </div>
              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">G 글로벌 스타트업</h3>
-              <p className="text-gray-700 dark:text-slate-300">
-                전력 소비-기후 데이터 활용AI 기반<br/>태양광 발전 효율화 시스템 설계 및 개발 
+              <p className="text-sm sm:text-base text-gray-700 dark:text-slate-300">
+                전력 소비-기후 데이터 활용AI 기반<br/>태양광 발전 효율화 시스템 설계 및 개발
               </p>
             </div>
 
@@ -503,7 +585,7 @@ export default function Home() {
                 3x
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">C 기업</h3>
-              <p className="text-gray-700 dark:text-slate-300">
+              <p className="text-sm sm:text-base text-gray-700 dark:text-slate-300">
                 고객 영업-서비스 제공 데이터 활용<br/>AI 기반 영업-운영 반자동화 시스템 구축
               </p>
             </div>
@@ -513,7 +595,7 @@ export default function Home() {
                 2x
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">K 광고대행사</h3>
-              <p className="text-gray-700 dark:text-slate-300">
+              <p className="text-sm sm:text-base text-gray-700 dark:text-slate-300">
                 소비자 컨텐츠 반응 데이터 활용<br/>광고물 적정성-노출도 스코어링 시스템 구축
               </p>
             </div>
@@ -527,14 +609,14 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 당신의 비즈니스 목표를<br/>알려주세요.
               </h2>
-              <p className="text-xl text-gray-700 dark:text-slate-300 mb-4">
+              <p className="text-lg sm:text-xl text-gray-700 dark:text-slate-300 mb-4">
                 성과 개선도 좋고, 비용 감축도 좋습니다.<br />
                 FlowOS 가 당신의 파트너가 되어드리겠습니다.
               </p>
-              <p className="text-lg text-gray-600 dark:text-slate-400">
+              <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400">
                 솔루션을 함께 고민할 담당자가 6시간 안에 연락드리겠습니다.
               </p>
             </div>
@@ -557,14 +639,14 @@ export default function Home() {
       </footer>
 
       {/* Floating Contact Button */}
-      <div className="fixed bottom-8 right-8 z-50">
+      <a href="#contact" className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-40 group">
         <StarBorder as="button" color="#0099CC">
-          <div className="bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] text-white p-4 rounded-xl shadow-[0_10px_40px_rgba(0,38,139,0.3)] dark:shadow-[0_0_40px_rgba(91,141,239,0.5)] transition-all duration-300 hover:scale-110 flex items-center gap-2">
-            <MessageCircle className="w-6 h-6" />
-            <span className="font-medium pr-2">FlowOS 상담</span>
+          <div className="bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] text-white p-3 sm:p-4 rounded-xl shadow-[0_10px_40px_rgba(0,38,139,0.3)] dark:shadow-[0_0_40px_rgba(91,141,239,0.5)] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center gap-2">
+            <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+            <span className="font-medium pr-1 sm:pr-2 hidden sm:inline">FlowOS 상담</span>
           </div>
         </StarBorder>
-      </div>
+      </a>
     </div>
   );
 }

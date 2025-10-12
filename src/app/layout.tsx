@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'FlowOS는 기업 데이터를 발견·분석·연결해 생산성을 높이고 비용을 줄이는 AI 기반 운영 체제입니다. 지금 당신의 조직 워크플로우를 혁신하세요.',
     images: [
       {
-        url: 'https://www.flowos.work/og-image.jpg',
+        url: 'https://www.flowos.work/og-image.png',
         alt: 'FlowOS - AI 기반 데이터 운영 체제',
       },
     ],

@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Google Apps Script URL
-    const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyyjNnpPLKFNJKh1tNYy2HIWMqxqQgRZdWwoXWi0YvqFC12zwPOWyvrTZyKWmQF0UgU/exec';
+    const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbzp1Gze-n75hVPOZvHXx_LGOVAhmGsaAlfovA6d9SSkcue7iUODqeFzCMGynV5CoFPK/exec';
 
     // 현재 시간 (한국 시간)
     const now = new Date();

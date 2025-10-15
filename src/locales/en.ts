@@ -121,6 +121,16 @@ export const en: Translations = {
     title: 'We Propose Solutions for Companies with These Concerns.',
     subtitle1: 'Every industry, every company is accumulating data.',
     subtitle2: 'The key is how you utilize that data.',
+    cards: [
+      'How can we connect **in-store customer visit data**\nto sales performance?',
+      'How can we leverage **online consumer behavior data**\nfor branding purposes?',
+      'Is AI-powered sales automation possible\nusing **service usage data**?',
+      'What methods are available to improve CS efficiency\nbased on **customer service data**?',
+      'We want to optimize delivery operations by\ncollecting and analyzing **logistics data**.',
+      'Can we optimize production lines\nbased on **factory order data**?',
+      'How can we improve marketing performance\nbased on **customer purchase behavior data**?',
+      'We want to enhance workforce efficiency\nby utilizing **employee attendance data**.',
+    ],
   },
   faq: {
     title: 'Frequently Asked Questions',

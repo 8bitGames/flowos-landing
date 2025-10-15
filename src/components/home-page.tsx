@@ -438,7 +438,7 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
           </div>
 
           {/* Centered Carousel */}
-          <TargetCarousel />
+          <TargetCarousel cards={t.targetCompanies.cards} />
         </div>
       </section>
 

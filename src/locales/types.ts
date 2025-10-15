@@ -70,6 +70,7 @@ export interface Translations {
     title: string;
     subtitle1: string;
     subtitle2: string;
+    cards: string[];
   };
   faq: {
     title: string;

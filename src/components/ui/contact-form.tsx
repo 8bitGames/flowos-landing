@@ -2,6 +2,7 @@
 
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { StarBorder } from './star-border';
+import { Locale, Translations } from '@/locales/types';
 
 interface FormData {
   name: string;
@@ -12,7 +13,12 @@ interface FormData {
   message: string;
 }
 
-export function ContactForm() {
+interface ContactFormProps {
+  locale: Locale;
+  translations: Translations;
+}
+
+export function ContactForm({ locale, translations: t }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     company: '',
@@ -40,7 +46,7 @@ export function ContactForm() {
     // 필수 필드 검증
     if (!formData.name || !formData.company || !formData.email || !formData.phone || !formData.message) {
       setSubmitStatus('error');
-      setErrorMessage('필수 항목을 모두 입력해주세요.');
+      setErrorMessage(locale === 'ko' ? '필수 항목을 모두 입력해주세요.' : 'Please fill in all required fields.');
       return;
     }
 
@@ -63,7 +69,7 @@ export function ContactForm() {
       if (result.status === 'success') {
         setSubmitStatus('success');
       } else {
-        throw new Error(result.message || '전송에 실패했습니다.');
+        throw new Error(result.message || (locale === 'ko' ? '전송에 실패했습니다.' : 'Submission failed.'));
       }
 
       // 폼 초기화
@@ -84,7 +90,7 @@ export function ContactForm() {
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
-      setErrorMessage('문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      setErrorMessage(locale === 'ko' ? '문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' : 'An error occurred while submitting. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -95,25 +101,25 @@ export function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">이름 *</label>
+            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">{t.contact.formLabels.name} *</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="홍길동"
+              placeholder={t.contact.formPlaceholders.name}
               required
               className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">회사명 *</label>
+            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">{t.contact.formLabels.company} *</label>
             <input
               type="text"
               name="company"
               value={formData.company}
               onChange={handleChange}
-              placeholder="회사명을 입력해주세요"
+              placeholder={t.contact.formPlaceholders.company}
               required
               className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
             />
@@ -121,13 +127,13 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">이메일 *</label>
+          <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">{t.contact.formLabels.email} *</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="example@company.com"
+            placeholder={t.contact.formPlaceholders.email}
             required
             className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
           />
@@ -135,19 +141,19 @@ export function ContactForm() {
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">전화번호 *</label>
+            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">{t.contact.formLabels.phone} *</label>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="010-1234-5678"
+              placeholder={t.contact.formPlaceholders.phone}
               required
               className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors"
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">웹사이트</label>
+            <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">Website</label>
             <input
               type="url"
               name="website"
@@ -160,13 +166,13 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">현재 과제 또는 고민 *</label>
+          <label className="block text-sm text-gray-700 dark:text-slate-400 mb-2 font-medium">{t.contact.formLabels.message} *</label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
             rows={5}
-            placeholder="데이터 관리나 업무 프로세스에서 겪고 있는 어려움이나 개선하고 싶은 부분을 자유롭게 작성해주세요."
+            placeholder={t.contact.formPlaceholders.message}
             required
             maxLength={500}
             className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-blue-500 focus:outline-none transition-colors resize-none"
@@ -180,7 +186,7 @@ export function ContactForm() {
         {submitStatus === 'success' && (
           <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <p className="text-green-800 dark:text-green-300 text-sm font-medium">
-              ✅ 문의가 성공적으로 접수되었습니다! 6시간 안에 연락드리겠습니다.
+              ✅ {t.contact.messages.success}
             </p>
           </div>
         )}
@@ -195,7 +201,7 @@ export function ContactForm() {
 
         <StarBorder as="button" type="submit" color="#06b6d4" className="w-full" disabled={isSubmitting}>
           <div className={`w-full px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 text-white text-lg font-medium transition-all duration-300 transform ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}>
-            {isSubmitting ? '전송 중...' : '문의 제출하기'}
+            {isSubmitting ? t.contact.formLabels.submitting : t.contact.formLabels.submit}
           </div>
         </StarBorder>
       </form>

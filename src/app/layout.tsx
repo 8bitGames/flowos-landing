@@ -35,6 +35,13 @@ export const metadata: Metadata = {
     ],
     locale: 'ko_KR',
   },
+  alternates: {
+    canonical: 'https://flowos.work',
+    languages: {
+      'ko': 'https://flowos.work',
+      'en': 'https://flowos.work/en',
+    },
+  },
 };
 
 import { ThemeProvider } from '@/components/theme-provider';

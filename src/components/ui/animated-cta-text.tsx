@@ -7,17 +7,11 @@ interface AnimatedCTATextProps {
   text?: string;
 }
 
-export function AnimatedCTAText({ text }: AnimatedCTATextProps) {
-  // Always call hooks at the top level
+function AnimatedKoreanText() {
   const [phase, setPhase] = useState<'increase' | 'decrease'>('increase');
   const [number, setNumber] = useState(10);
   const [isHolding, setIsHolding] = useState(false);
   const startTimeRef = useRef<number>(Date.now());
-
-  // If text is provided, just display it
-  if (text) {
-    return <span className="sm:whitespace-nowrap text-center block">{text}</span>;
-  }
 
   // 숫자 증가 애니메이션 (10→30) with easing
   useEffect(() => {
@@ -63,7 +57,7 @@ export function AnimatedCTAText({ text }: AnimatedCTATextProps) {
 
       return () => clearTimeout(holdTimer);
     }
-  }, [number]); // isHolding 제거: setIsHolding(true) 호출로 인한 cleanup 방지
+  }, [number, isHolding]);
 
   return (
     <span className="sm:whitespace-nowrap text-center block">
@@ -85,4 +79,14 @@ export function AnimatedCTAText({ text }: AnimatedCTATextProps) {
       </AnimatePresence>
     </span>
   );
+}
+
+export function AnimatedCTAText({ text }: AnimatedCTATextProps) {
+  // If text is provided, just display it
+  if (text) {
+    return <span className="sm:whitespace-nowrap text-center block">{text}</span>;
+  }
+
+  // Otherwise, render the animated Korean version
+  return <AnimatedKoreanText />;
 }

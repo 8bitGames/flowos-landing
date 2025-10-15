@@ -8,16 +8,16 @@ interface AnimatedCTATextProps {
 }
 
 export function AnimatedCTAText({ text }: AnimatedCTATextProps) {
-  // If text is provided, just display it
-  if (text) {
-    return <span className="sm:whitespace-nowrap text-center block">{text}</span>;
-  }
-
-  // Original animation logic for Korean version
+  // Always call hooks at the top level
   const [phase, setPhase] = useState<'increase' | 'decrease'>('increase');
   const [number, setNumber] = useState(10);
   const [isHolding, setIsHolding] = useState(false);
   const startTimeRef = useRef<number>(Date.now());
+
+  // If text is provided, just display it
+  if (text) {
+    return <span className="sm:whitespace-nowrap text-center block">{text}</span>;
+  }
 
   // 숫자 증가 애니메이션 (10→30) with easing
   useEffect(() => {

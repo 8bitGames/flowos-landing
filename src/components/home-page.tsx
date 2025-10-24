@@ -194,7 +194,7 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
             </div>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto !mt-6 px-2">
               {t.hero.description.split('{words}')[0]}
-              <span className="inline-block w-16 sm:w-20 text-center">
+              <span className="inline-block text-center">
                 <RollingText words={t.hero.rollingWords} interval={2000} className="text-[#00268B] dark:text-[#7BA4FF] text-[1.1rem] sm:text-[1.27rem] md:text-[1.38rem] font-extrabold" />
               </span>
               {t.hero.description.split('{words}')[1]}

@@ -84,7 +84,7 @@ function AnimatedKoreanText() {
 export function AnimatedCTAText({ text }: AnimatedCTATextProps) {
   // If text is provided, just display it
   if (text) {
-    return <span className="sm:whitespace-nowrap text-center block">{text}</span>;
+    return <span className="text-center block leading-tight">{text}</span>;
   }
 
   // Otherwise, render the animated Korean version

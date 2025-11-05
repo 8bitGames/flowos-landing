@@ -85,9 +85,9 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
             <GlowMenuItem href="#contact">{t.nav.contact}</GlowMenuItem>
           </div>
 
-          {/* Right Side - Mobile Hamburger + Language + Theme + CTA */}
+          {/* Right Side - Desktop: Language + Theme + CTA, Mobile: Only Hamburger */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Always visible on mobile */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
@@ -100,42 +100,45 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
               )}
             </button>
 
-            <LanguageSwitcher />
-            <ThemeToggle />
-            <CTAButton size="sm" href="#contact" className="hidden sm:flex">{t.contact.formLabels.submit}</CTAButton>
+            {/* Desktop only - Language Switcher, Theme Toggle, CTA */}
+            <div className="hidden md:flex items-center gap-3 sm:gap-4">
+              <LanguageSwitcher />
+              <ThemeToggle />
+              <CTAButton size="sm" href="#contact">{t.contact.formLabels.submit}</CTAButton>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
-        {mobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden z-40"
-              onClick={() => setMobileMenuOpen(false)}
-            />
+      </nav>
 
-            {/* Mobile Menu */}
-            <div className="fixed top-[73px] left-0 right-0 bg-white dark:bg-slate-950 border-b border-gray-200 dark:border-slate-800 md:hidden z-40 animate-slide-down">
-              <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col gap-4">
+      {/* Mobile Menu Full Screen - Completely separate from nav */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-[9999] md:hidden bg-white dark:bg-slate-950"
+          style={{ top: '73px' }}
+        >
+          <div className="h-full overflow-y-auto">
+            <div className="flex flex-col min-h-full px-6 py-8">
+              {/* Navigation Links */}
+              <nav className="flex flex-col gap-1 mb-8">
                 <a
                   href="#features"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                  className="text-2xl font-semibold text-gray-900 dark:text-white hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-4 border-b border-gray-200 dark:border-slate-800"
                 >
                   {t.nav.feature}
                 </a>
                 <a
                   href="#benefits"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                  className="text-2xl font-semibold text-gray-900 dark:text-white hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-4 border-b border-gray-200 dark:border-slate-800"
                 >
                   {t.nav.services}
                 </a>
                 <a
                   href="#stats"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                  className="text-2xl font-semibold text-gray-900 dark:text-white hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-4 border-b border-gray-200 dark:border-slate-800"
                 >
                   {t.nav.usecase}
                 </a>
@@ -144,63 +147,65 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                  className="text-2xl font-semibold text-gray-900 dark:text-white hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-4 border-b border-gray-200 dark:border-slate-800"
                 >
                   {t.nav.blog}
                 </a>
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-700 dark:text-slate-300 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-3 border-b border-gray-100 dark:border-slate-800"
+                  className="text-2xl font-semibold text-gray-900 dark:text-white hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors py-4 border-b border-gray-200 dark:border-slate-800"
                 >
                   {t.nav.contact}
                 </a>
+              </nav>
 
-                {/* Mobile CTA Button */}
-                <CTAButton size="lg" href="#contact" className="mt-4 w-full" onClick={() => setMobileMenuOpen(false)}>
+              {/* Settings Section */}
+              <div className="flex flex-col gap-6 mb-8">
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-lg font-medium text-gray-700 dark:text-slate-300">언어 / Language</span>
+                  <LanguageSwitcher />
+                </div>
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-lg font-medium text-gray-700 dark:text-slate-300">테마 / Theme</span>
+                  <ThemeToggle />
+                </div>
+              </div>
+
+              {/* CTA Button at Bottom */}
+              <div className="mt-auto pt-6">
+                <CTAButton size="lg" href="#contact" className="w-full" onClick={() => setMobileMenuOpen(false)}>
                   {t.contact.formLabels.submit}
                 </CTAButton>
               </div>
             </div>
-          </>
-        )}
-      </nav>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
-      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-32 sm:pb-48 md:pb-64 lg:pb-80 xl:pb-96 px-6 overflow-hidden min-h-screen bg-white dark:bg-slate-950">
+      <section className="relative px-6 overflow-hidden min-h-[calc(100vh-73px)] bg-white dark:bg-slate-950 flex items-center">
         {/* Shader Animation Background */}
         <ShaderBackground className="opacity-50" />
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="text-center space-y-4">
-            <h1 className="font-bold space-y-0">
-              <div className="text-[2.8rem] sm:text-[3.375rem] md:text-[5.4rem] leading-[1.1] tracking-tight">
-                <AnimatedGradientText>
-                  {t.hero.title1}
-                </AnimatedGradientText>
-              </div>
-              <div className="text-[1.8rem] sm:text-[2.15rem] md:text-[3.4rem] -mt-2 leading-[1.1] tracking-tight">
-                <AnimatedGradientText>
-                  {t.hero.title2}
-                </AnimatedGradientText>
-              </div>
+        <div className="relative z-10 max-w-5xl mx-auto w-full py-20">
+          <div className="text-center space-y-6">
+            <h1 className="text-[3rem] xs:text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold leading-[1.1] tracking-tight">
+              <AnimatedGradientText>
+                {t.hero.title1}
+              </AnimatedGradientText>
             </h1>
-            <div className="space-y-1">
-              <p className="text-xl md:text-2xl text-gray-700 dark:text-slate-300 max-w-3xl mx-auto font-semibold">
-                {t.hero.subtitle}
-              </p>
-              <p className="text-base md:text-lg text-gray-600 dark:text-slate-400 max-w-3xl mx-auto font-bold">
-                {t.hero.subtitleEn}
-              </p>
-            </div>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto !mt-6 px-2">
-              {t.hero.description.split('{words}')[0]}
-              <span className="inline-block text-center">
-                <RollingText words={t.hero.rollingWords} interval={2000} className="text-[#00268B] dark:text-[#7BA4FF] text-[1.1rem] sm:text-[1.27rem] md:text-[1.38rem] font-extrabold" />
+            <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 dark:text-slate-300 max-w-4xl mx-auto font-medium px-4">
+              {t.hero.subtitle.split('{words}')[0]}
+              <span className="inline-block">
+                <RollingText words={t.hero.rollingWords} interval={2000} className="text-[#00268B] dark:text-[#7BA4FF] font-extrabold" />
               </span>
-              {t.hero.description.split('{words}')[1]}
+              {t.hero.subtitle.split('{words}')[1]}
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 px-4 sm:px-0">
-              <CTAButton size="lg" href="#contact" className="w-full max-w-[450px] sm:min-w-[420px]">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto px-4">
+              {t.hero.description}
+            </p>
+            <div className="flex items-center justify-center pt-4">
+              <CTAButton size="lg" href="#contact" className="w-auto px-12">
                 <AnimatedCTAText text={t.hero.cta} />
               </CTAButton>
             </div>
@@ -209,92 +214,92 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
       </section>
 
       {/* Animated Grid Preview */}
-      <section className="pb-20 px-6 -mt-24 sm:-mt-40 md:-mt-56 lg:-mt-72 xl:-mt-80">
+      <section className="py-20 px-6 bg-white dark:bg-slate-950">
         <div className="max-w-5xl mx-auto">
           <div className="relative max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {/* Blue Card - AI-Powered Workflow */}
-              <div className="md:col-span-2 h-80 rounded-2xl bg-gradient-to-br from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] p-8 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:shadow-[0_0_30px_rgba(91,141,239,0.4)]">
-                <div>
+              <div className="md:col-span-2 min-h-80 md:h-80 rounded-2xl bg-gradient-to-br from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] p-6 md:p-8 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:shadow-[0_0_30px_rgba(91,141,239,0.4)]">
+                <div className="mb-4">
                   <div className="flex items-center gap-2 text-white/90 mb-3">
-                    <Sparkles className="w-8 h-8" />
-                    <span className="text-2xl font-bold">{t.previewCards.aiPowered.title}</span>
+                    <Sparkles className="w-7 h-7 sm:w-8 sm:h-8" />
+                    <span className="text-xl sm:text-2xl font-bold">{t.previewCards.aiPowered.title}</span>
                   </div>
-                  <p className="text-white text-sm leading-relaxed">
+                  <p className="text-white text-base sm:text-lg leading-relaxed">
                     {t.previewCards.aiPowered.description}
                   </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 mt-auto">
                   {t.previewCards.aiPowered.features.map((feature, index) => (
-                    <div key={index} className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4">
-                      <div className="flex items-center justify-between text-white">
-                        <span className="text-xs sm:text-sm leading-tight font-bold">{feature}</span>
-                        {index === 0 && <Zap className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />}
-                        {index === 1 && <Sparkles className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />}
-                        {index === 2 && <Link className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />}
-                        {index === 3 && <Shield className="w-4 h-4 flex-shrink-0 ml-1 sm:ml-2" />}
+                    <div key={index} className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                      <div className="flex items-center justify-between text-white gap-1">
+                        <span className="text-sm sm:text-base leading-tight font-extrabold break-keep">{feature}</span>
+                        {index === 0 && <Zap className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
+                        {index === 1 && <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
+                        {index === 2 && <Link className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
+                        {index === 3 && <Shield className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Purple Card - Productivity */}
-              <div className="h-80 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 p-8 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                <div>
+              {/* Light Blue Card - Productivity */}
+              <div className="min-h-80 md:h-80 rounded-2xl bg-gradient-to-br from-[#0099CC] to-[#00D4FF] dark:from-[#0099CC] dark:to-[#00D4FF] p-6 md:p-8 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:shadow-[0_0_30px_rgba(0,153,204,0.4)]">
+                <div className="mb-4">
                   <div className="flex items-center gap-2 text-white/90 mb-3">
-                    <Users className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold">{t.previewCards.productivity.title}</h3>
+                    <Users className="w-7 h-7 sm:w-8 sm:h-8" />
+                    <h3 className="text-xl sm:text-2xl font-bold">{t.previewCards.productivity.title}</h3>
                   </div>
-                  <p className="text-white text-sm leading-relaxed">
+                  <p className="text-white text-base sm:text-lg leading-relaxed">
                     {t.previewCards.productivity.description}
                   </p>
                 </div>
-                <div className="flex-1 flex items-center justify-center">
+                <div className="flex items-center justify-center py-4">
                   <div className="text-center">
                     <CountingNumber start={10} end={t.previewCards.productivity.percentage} duration={2000} suffix="%" />
                   </div>
                 </div>
               </div>
 
-              {/* Orange Card - Cost */}
-              <div className="order-4 md:order-3 h-64 rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 p-6 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                <div>
+              {/* Navy Blue Card - Cost */}
+              <div className="order-4 md:order-3 min-h-64 md:h-64 rounded-2xl bg-gradient-to-br from-[#003875] to-[#00268B] dark:from-[#2B5A8E] dark:to-[#5B8DEF] p-6 md:p-8 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:shadow-[0_0_30px_rgba(43,90,142,0.4)] overflow-hidden">
+                <div className="mb-4">
                   <div className="flex items-center gap-2 text-white/90 mb-3">
-                    <DollarSign className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold">{t.previewCards.cost.title}</h3>
+                    <DollarSign className="w-7 h-7 sm:w-8 sm:h-8" />
+                    <h3 className="text-xl sm:text-2xl font-bold">{t.previewCards.cost.title}</h3>
                   </div>
-                  <p className="text-white text-sm leading-relaxed">
+                  <p className="text-white text-base sm:text-lg leading-relaxed">
                     {t.previewCards.cost.description}
                   </p>
                 </div>
-                <div className="flex-1 flex items-center justify-center">
+                <div className="flex items-center justify-center py-4">
                   <div className="text-center">
                     <CountingNumber start={10} end={t.previewCards.cost.percentage} duration={2000} prefix="-" suffix="%" />
                   </div>
                 </div>
               </div>
 
-              {/* Green Card - System */}
-              <div className="order-3 md:order-4 md:col-span-2 h-64 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-600 p-6 flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                <div>
-                  <div className="flex items-center gap-2 text-white/90 mb-3">
-                    <MonitorCog className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold">{t.previewCards.system.title}</h3>
+              {/* Medium Blue Card - System */}
+              <div className="order-3 md:order-4 md:col-span-2 min-h-64 md:h-64 rounded-2xl bg-gradient-to-br from-[#0066A1] to-[#0099CC] dark:from-[#3B7FB5] dark:to-[#00D4FF] p-6 md:p-8 flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:shadow-[0_0_30px_rgba(59,127,181,0.4)] overflow-hidden">
+                <div className="mb-2 flex-shrink-0">
+                  <div className="flex items-center gap-2 text-white/90 mb-2">
+                    <MonitorCog className="w-6 h-6 sm:w-7 sm:h-7" />
+                    <h3 className="text-lg sm:text-xl font-bold">{t.previewCards.system.title}</h3>
                   </div>
-                  <p className="text-white text-sm leading-relaxed mb-4">
+                  <p className="text-white text-xs sm:text-sm leading-snug">
                     {t.previewCards.system.description}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 gap-2 mt-auto flex-shrink-0">
                   {t.previewCards.system.benefits.map((benefit, index) => (
                     <div key={index} className="bg-white/20 backdrop-blur-sm rounded-lg p-2 sm:p-3">
-                      <div className="flex flex-col items-center gap-1 sm:gap-2">
-                        {index === 0 && <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />}
-                        {index === 1 && <TrendingDown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />}
-                        {index === 2 && <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />}
-                        {index === 3 && <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" />}
-                        <p className="text-white text-xs sm:text-sm leading-tight text-center font-bold">
+                      <div className="flex flex-col items-center gap-1">
+                        {index === 0 && <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />}
+                        {index === 1 && <TrendingDown className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />}
+                        {index === 2 && <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />}
+                        {index === 3 && <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />}
+                        <p className="text-white text-[10px] sm:text-xs leading-tight text-center font-extrabold break-keep">
                           {benefit}
                         </p>
                       </div>
@@ -336,20 +341,20 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
               <div key={index} className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-4">
-                    {index === 0 && <Lightbulb className="w-10 h-10 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
-                    {index === 1 && <Database className="w-10 h-10 sm:w-12 sm:h-12 text-purple-600 dark:text-purple-400" />}
-                    {index === 2 && <Workflow className="w-10 h-10 sm:w-12 sm:h-12 text-[#0099CC] dark:text-[#00D4FF]" />}
-                    {index === 3 && <Code className="w-10 h-10 sm:w-12 sm:h-12 text-green-600 dark:text-green-400" />}
+                    {index === 0 && <Lightbulb className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
+                    {index === 1 && <Database className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 text-[#0066A1] dark:text-[#00D4FF]" />}
+                    {index === 2 && <Workflow className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 text-[#0099CC] dark:text-[#00D4FF]" />}
+                    {index === 3 && <Code className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 text-[#003875] dark:text-[#5B8DEF]" />}
                     <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">{item.title}</h3>
                   </div>
                   <p className="text-lg sm:text-xl font-bold text-gray-600 dark:text-slate-400 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700">{item.subtitle}</p>
-                  <p className="text-sm text-gray-700 dark:text-slate-300">{item.description}</p>
+                  <p className="text-base sm:text-lg text-gray-700 dark:text-slate-300 leading-relaxed">{item.description}</p>
                 </div>
                 <div className={`absolute inset-0 bg-gradient-to-br from-transparent via-transparent ${
-                  index === 0 ? 'to-blue-500/5 dark:to-blue-500/10' :
-                  index === 1 ? 'to-purple-500/5 dark:to-purple-500/10' :
-                  index === 2 ? 'to-cyan-500/5 dark:to-cyan-500/10' :
-                  'to-green-500/5 dark:to-green-500/10'
+                  index === 0 ? 'to-[#00268B]/5 dark:to-[#5B8DEF]/10' :
+                  index === 1 ? 'to-[#0066A1]/5 dark:to-[#00D4FF]/10' :
+                  index === 2 ? 'to-[#0099CC]/5 dark:to-[#00D4FF]/10' :
+                  'to-[#003875]/5 dark:to-[#5B8DEF]/10'
                 } opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
               </div>
             ))}
@@ -362,42 +367,43 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
       </section>
 
       {/* Methodology Section */}
-      <section id="benefits" className="py-20 px-6">
+      <section id="benefits" className="py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4 break-keep">
               {t.process.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-slate-400">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-slate-400 break-keep px-2">
               {t.process.subtitle}
             </p>
           </div>
 
-          {/* Horizontal Scroll Container */}
-          <div className="relative pb-8 mb-12 overflow-hidden">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-4 px-4 justify-center">
+          {/* Steps Container */}
+          <div className="relative pb-4 md:pb-8 mb-6 md:mb-12 overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-4 px-2 md:px-4 justify-center">
               {t.process.steps.map((step, index) => (
                 <>
                   {/* Step */}
-                  <div key={`step-${index}`} className="flex flex-col items-center">
-                    <p className="text-sm text-[#00268B] dark:text-[#5B8DEF] font-bold mb-2">STEP</p>
-                    <p className="text-2xl font-bold text-[#00268B] dark:text-[#5B8DEF] mb-4">{step.number}</p>
-                    <div className="w-24 h-24 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg mb-4">
-                      {index === 0 && <Lightbulb className="w-12 h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
-                      {index === 1 && <Database className="w-12 h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
-                      {index === 2 && <Pencil className="w-12 h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
-                      {index === 3 && <MonitorPlay className="w-12 h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
-                      {index === 4 && <Code className="w-12 h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
-                      {index === 5 && <Wrench className="w-12 h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
+                  <div key={`step-${index}`} className="flex flex-col items-center w-full md:w-auto">
+                    <p className="text-sm sm:text-base md:text-lg text-[#00268B] dark:text-[#5B8DEF] font-extrabold mb-3">
+                      STEP {step.number}
+                    </p>
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg mb-3">
+                      {index === 0 && <Lightbulb className="w-9 h-9 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
+                      {index === 1 && <Database className="w-9 h-9 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
+                      {index === 2 && <Pencil className="w-9 h-9 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
+                      {index === 3 && <MonitorPlay className="w-9 h-9 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
+                      {index === 4 && <Code className="w-9 h-9 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
+                      {index === 5 && <Wrench className="w-9 h-9 sm:w-12 sm:h-12 text-[#00268B] dark:text-[#5B8DEF]" />}
                     </div>
-                    <p className="text-sm font-bold text-gray-900 dark:text-white text-center whitespace-pre-line">
+                    <p className="text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white text-center whitespace-pre-line break-keep px-2 max-w-[220px] leading-snug">
                       {step.title}
                     </p>
                   </div>
 
                   {/* Arrow between steps */}
                   {index < t.process.steps.length - 1 && (
-                    <ChevronRight key={`arrow-${index}`} className="w-8 h-8 text-gray-400 dark:text-slate-600 flex-shrink-0 rotate-90 md:rotate-0" />
+                    <ChevronRight key={`arrow-${index}`} className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 dark:text-slate-600 flex-shrink-0 rotate-90 md:rotate-0 my-2 md:my-0" />
                   )}
                 </>
               ))}
@@ -490,7 +496,7 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
       {/* Contact Form */}
       <section id="contact" className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-start">
             <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 whitespace-pre-line">
                 {t.contact.title}

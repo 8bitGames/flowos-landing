@@ -65,7 +65,7 @@ export function TargetCarousel({ cards }: TargetCarouselProps) {
         {cards.map((text, index) => (
           <SwiperSlide key={index}>
             <div className="w-full h-full rounded-2xl border-2 p-4 flex items-center justify-center transition-all duration-300 hover:shadow-2xl swiper-slide-card">
-              <p className="text-base leading-relaxed font-semibold whitespace-pre-line text-center">
+              <p className="text-base sm:text-lg md:text-xl leading-relaxed font-bold whitespace-pre-line text-center break-keep">
                 {parseBoldText(text)}
               </p>
             </div>

@@ -9,13 +9,13 @@ export const en: Translations = {
     contact: 'Contact',
   },
   hero: {
-    title1: 'WORK IN FLOW',
-    title2: 'WHERE DATA MEETS AI.',
-    subtitle: 'FlowOS: AI-Data Based Operating System for Business.',
-    subtitleEn: 'FlowOS is an AI-powered operating system for business workflows.',
-    description: 'We help companies {words} the data they possess with AI, designing the foundational growth structure for efficient work.',
-    rollingWords: ['Discover', 'Analyze', 'Connect'],
-    cta: 'Become a FlowOS Partner Now!',
+    title1: 'FlowOS',
+    title2: '',
+    subtitle: 'AI solution that {words} enterprise data to boost productivity',
+    subtitleEn: '',
+    description: 'Achieve 30% productivity increase and 30% cost reduction.',
+    rollingWords: ['Discovers', 'Analyzes', 'Connects'],
+    cta: 'Get Started',
   },
   previewCards: {
     aiPowered: {

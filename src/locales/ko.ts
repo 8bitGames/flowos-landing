@@ -2,24 +2,24 @@ import { Translations } from './types';
 
 export const ko: Translations = {
   nav: {
-    feature: 'Feature',
-    services: 'Services',
-    usecase: 'UseCase',
-    blog: 'Blog',
-    contact: 'Contact',
+    feature: '기능',
+    services: '서비스',
+    usecase: '활용사례',
+    blog: '블로그',
+    contact: '문의하기',
   },
   hero: {
-    title1: 'WORK IN FLOW',
-    title2: 'WHERE DATA MEETS AI.',
-    subtitle: 'AI-데이터 기반의 비즈니스 운영 체제 FlowOS.',
-    subtitleEn: 'FlowOS is an AI-powered operating system for business workflows.',
-    description: '우리는 AI와 함께 기업이 가진 데이터를 {words} 하고, 효율적으로 일할 수 있는 근본적인 성장 구조를 설계합니다.',
+    title1: 'FlowOS',
+    title2: '',
+    subtitle: '기업 데이터를 {words}하여 생산성을 높이는 AI 솔루션',
+    subtitleEn: '',
+    description: '생산성 30% 향상, 비용 30% 절감을 실현합니다.',
     rollingWords: ['발견', '분석', '연결'],
-    cta: '지금 바로 FlowOS 의 파트너가 되어보세요!',
+    cta: '지금 시작하기',
   },
   previewCards: {
     aiPowered: {
-      title: 'AI-Powered Workflow',
+      title: 'AI 기반 워크플로우',
       description: '손 쉽게 업무 효율을 높이고 성과를 극대화 하세요',
       features: [
         '데이터 접근성-활용성 확대',
@@ -29,17 +29,17 @@ export const ko: Translations = {
       ],
     },
     productivity: {
-      title: 'Productivity / Efficiency',
+      title: '생산성 / 효율성',
       description: '조직 생산성과 업무 효율을 높일 수 있습니다.',
       percentage: 30,
     },
     cost: {
-      title: 'Cost / Resource',
+      title: '비용 / 리소스',
       description: '조직 운영 비용과 투입 리소스를 절감해보세요.',
       percentage: 30,
     },
     system: {
-      title: 'With Data & AI Based System',
+      title: '데이터 & AI 기반 시스템',
       description: 'FlowOS와 더 빠르고, 효율적이고, 유연하게 일하세요. AI가 데이터를 효율로, 효율을 성과로 바꿉니다.',
       benefits: [
         '의사결정 타당성 강화',
@@ -52,30 +52,30 @@ export const ko: Translations = {
   valueProposition: {
     quote: '더 많은 기업들이 {highlight}에만 집중하기를 바랍니다.',
     quoteHighlight: '가치',
-    description: 'FlowOS가 전략 컨설팅과 분석에서 끝나지 않는 시스템 운영 파트너로서, AI와 사람이 함께 하는 새로운 업무의 흐름을 만들어드리겠습니다.',
+    description: 'FlowOS가 전략 컨설팅과 분석에서 끝나지 않는 시스템 운영 파트너로서, AI와 사람이 함께 하는 새로운 업무의 흐름을 만들어 드리겠습니다.',
   },
   features: {
     title: 'FlowOS 는 어떤 서비스를 제공하나요?',
-    subtitle: 'What FlowOS provides.',
+    subtitle: 'FlowOS가 제공하는 서비스',
     items: [
       {
         title: '업무 프로세스 컨설팅',
-        subtitle: 'Operational process consulting',
+        subtitle: '운영 프로세스 컨설팅',
         description: '업무상의 문제를 정의하고 개선 포인트를 제안합니다. 기획, 디자인, 운영에 따른 로드맵을 구성합니다.',
       },
       {
         title: '데이터 수집 및 구조화',
-        subtitle: 'Data collection and structuring',
+        subtitle: '데이터 수집 및 체계화',
         description: '분석의 기반이 되는 업무 데이터를 내부 자산화하고, 체계적인 관리 및 업데이트를 위한 CONTEXT HUB를 구축합니다.',
       },
       {
         title: '워크플로우 디자인 설계',
-        subtitle: 'Workflow design and architecture',
+        subtitle: '워크플로우 설계 및 아키텍처',
         description: '반복 업무 자동화부터 전반의 프로세스를 최적화합니다. 부분적으로 AI 어시스턴트를 도입하여 효율화합니다.',
       },
       {
         title: '업무 시스템 개발 운영',
-        subtitle: 'System development and management',
+        subtitle: '시스템 개발 및 관리',
         description: '기능별 데모 제공 및 주기적으로 피드백을 반영합니다. 기업 맞춤형 솔루션을 구축하고 관리합니다.',
       },
     ],
@@ -161,7 +161,7 @@ export const ko: Translations = {
         answer: '시스템 구축 후에도 지속적으로 이용 피드백을 반영하고 기능을 업데이트합니다. FlowOS가 전략 컨설팅에서 끝나지 않는 시스템 운영 파트너로서 함께합니다.',
       },
       {
-        question: '우리 회사에 맞는 맞춤형 솔루션이 가능한가요?',
+        question: '저희 회사에 맞는 맞춤형 솔루션이 가능한가요?',
         answer: '네, FlowOS는 기업별 특성과 요구사항을 분석하여 맞춤형 솔루션을 설계하고 구축합니다. 기업 현황 진단부터 시작하여 귀사에 최적화된 시스템을 제공합니다.',
       },
       {
@@ -198,7 +198,7 @@ export const ko: Translations = {
   },
   footer: {
     copyright: '© FlowOS. Work in Flow. | anton@flowos.work',
-    tagline: '우리는 기업이 스스로 데이터로 일할 수 있는 운영 체계를 구축합니다.',
+    tagline: '저희는 기업이 스스로 데이터로 일할 수 있는 운영 체계를 구축합니다.',
   },
   floatingButton: {
     text: 'FlowOS 문의',

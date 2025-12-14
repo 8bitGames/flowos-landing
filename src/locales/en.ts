@@ -16,6 +16,7 @@ export const en: Translations = {
     description: 'Achieve 30% productivity increase and 30% cost reduction.',
     rollingWords: ['Discovers', 'Analyzes', 'Connects'],
     cta: 'Get Started',
+    viewDeck: 'View Company Deck',
   },
   previewCards: {
     aiPowered: {
@@ -199,6 +200,7 @@ export const en: Translations = {
   footer: {
     copyright: '© FlowOS. Work in Flow. | anton@flowos.work',
     tagline: 'We build an operating system that enables companies to work with data independently.',
+    viewDeck: 'View Company Deck',
   },
   floatingButton: {
     text: 'FlowOS Inquiry',
@@ -240,7 +242,7 @@ export const en: Translations = {
         credentials: ['VACorporation CTO', 'Marvrus Vice CTO'],
       },
       {
-        name: 'Kyungjin Yu',
+        name: 'Kyung Jin Yoo',
         role: 'Head of AI',
         bio: 'Realizes AI solutions with global-level engineering capabilities. Optimizes proven AI technologies for business environments to maximize operational efficiency and deliver immediate ROI.',
         credentials: ['Porsche Engineering', 'AI Instructor'],
@@ -252,7 +254,7 @@ export const en: Translations = {
         credentials: ['Bain & Company', 'Wharton MBA'],
       },
       {
-        name: 'Paul Mews',
+        name: 'Paul Mewes',
         role: 'CPO',
         bio: 'Transforms technology users truly need into products. Reinterprets advanced AI into intuitive tools that deliver value from day one.',
         credentials: ['Salesforce', 'Wharton MBA'],

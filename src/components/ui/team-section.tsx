@@ -17,11 +17,19 @@ interface TeamSectionProps {
   t: Translations;
 }
 
+const TEAM_IMAGES: Record<number, string> = {
+  0: "/team/ahn.jpg",        // CEO
+  1: "/team/서재필.png",      // CTO
+  2: "/team/유경진.png",      // Head of AI
+  3: "/team/Chris.png",      // CSO
+  4: "/team/Paul.png",       // CPO
+};
+
 export function TeamSection({ t }: TeamSectionProps) {
-  // Add CEO image to the first member from translations
+  // Add images to team members from translations
   const teamMembers: TeamMember[] = t.teamSection.members.map((member, index) => ({
     ...member,
-    image: index === 0 ? "/team/ahn.jpg" : undefined,
+    image: TEAM_IMAGES[index],
   }));
   return (
     <section className="py-24 px-6 bg-white dark:bg-slate-950">
@@ -126,11 +134,21 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
         <div className="absolute inset-0 bg-gradient-to-br from-[#00268B]/5 to-[#0099CC]/5 dark:from-[#5B8DEF]/10 dark:to-[#00D4FF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         <div className="relative z-10">
-          {/* Avatar placeholder with initials */}
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-            <span className="text-xl font-bold text-white">
-              {member.name.charAt(0)}
-            </span>
+          {/* Avatar with image or initials fallback */}
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+            {member.image ? (
+              <Image
+                src={member.image}
+                alt={member.name}
+                width={64}
+                height={64}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-xl font-bold text-white">
+                {member.name.charAt(0)}
+              </span>
+            )}
           </div>
 
           {/* Name & Role */}

@@ -16,6 +16,7 @@ export const ko: Translations = {
     description: '평균 생산성 30% 향상, 비용 30% 절감. FlowOS가 실현합니다.',
     rollingWords: ['발견', '분석', '연결'],
     cta: '도입 상담 신청하기',
+    viewDeck: '회사 소개서 보기',
   },
   previewCards: {
     aiPowered: {
@@ -199,6 +200,7 @@ export const ko: Translations = {
   footer: {
     copyright: '© FlowOS. Work in Flow. | anton@flowos.work',
     tagline: '우리는 기업이 데이터를 통해 스스로 성장하는 운영 체계를 만듭니다.',
+    viewDeck: '회사 소개서 보기',
   },
   floatingButton: {
     text: '도입 문의하기',

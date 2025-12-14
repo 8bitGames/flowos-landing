@@ -199,7 +199,7 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-8 flex justify-center"
+            className="mt-8 flex flex-col items-center gap-4"
           >
             <HoverBorderGradient
               as="a"
@@ -210,6 +210,14 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
               {t.hero.cta}
               <ArrowRight className="w-4 h-4" />
             </HoverBorderGradient>
+            <a
+              href="https://featpaper.com/v/yw3bs56i"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-500 dark:text-slate-400 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors underline underline-offset-4"
+            >
+              {t.hero.viewDeck}
+            </a>
           </motion.div>
         </div>
       </section>
@@ -472,7 +480,7 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
                 {t.contact.description2}
               </p>
               <a
-                href="https://featpaper.com/l/cqcHs4v1"
+                href="https://featpaper.com/v/yw3bs56i"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
@@ -500,6 +508,16 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
                 {t.companyInfo.address}
               </p>
             </div>
+
+            {/* Deck Link */}
+            <a
+              href="https://featpaper.com/v/yw3bs56i"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-500 dark:text-slate-400 hover:text-[#00268B] dark:hover:text-[#5B8DEF] transition-colors underline underline-offset-4"
+            >
+              {t.footer.viewDeck}
+            </a>
 
             {/* Copyright */}
             <div className="pt-4 border-t border-gray-200 dark:border-slate-700 w-full max-w-md">

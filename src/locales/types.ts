@@ -14,6 +14,7 @@ export interface Translations {
     description: string;
     rollingWords: string[];
     cta: string;
+    viewDeck: string;
   };
   previewCards: {
     aiPowered: {
@@ -109,6 +110,7 @@ export interface Translations {
   footer: {
     copyright: string;
     tagline: string;
+    viewDeck: string;
   };
   floatingButton: {
     text: string;

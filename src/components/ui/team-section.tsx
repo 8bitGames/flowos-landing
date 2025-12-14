@@ -18,7 +18,7 @@ const teamMembers: TeamMember[] = [
     role: "대표이사 (CEO)",
     bio: "문제의 본질을 정의하는 것에서 시작해, 가설을 검증하고 타협 없는 업무 최적화를 이뤄냅니다. 데이터와 AI 기반의 워크플로우 설계를 통해 기업이 30% 더 스마트하게 일할 수 있는 환경을 만듭니다.",
     credentials: ["고려대학교", "제일기획", "WE-AR COO"],
-    image: "/team/ahn.png",
+    image: "/team/ahn.jpg",
   },
   {
     name: "서재필",

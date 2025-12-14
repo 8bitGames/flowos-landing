@@ -414,7 +414,7 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
       </section>
 
       {/* Team Section */}
-      <TeamSection />
+      <TeamSection t={t} />
 
       {/* FAQ Section */}
       <section id="faq" className="py-20 px-6 bg-gray-50/50 dark:bg-slate-900/30">

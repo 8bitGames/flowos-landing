@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import type { Translations } from "@/locales/types";
 
 interface TeamMember {
   name: string;
@@ -12,41 +13,16 @@ interface TeamMember {
   image?: string;
 }
 
-const teamMembers: TeamMember[] = [
-  {
-    name: "안희창",
-    role: "대표이사 (CEO)",
-    bio: "문제의 본질을 정의하고 가설을 검증하며 데이터 기반의 최적화를 이뤄냅니다. AI 워크플로우 설계를 통해 기업이 핵심 가치에 집중하며 30% 더 스마트하게 일할 수 있는 환경을 만듭니다.",
-    credentials: ["제일기획", "WE-AR COO"],
-    image: "/team/ahn.jpg",
-  },
-  {
-    name: "서재필",
-    role: "최고기술책임자 (CTO)",
-    bio: "다양한 산업 분야의 기술 리더십을 바탕으로 FlowOS의 핵심 아키텍처를 총괄합니다. 안정적이면서도 유연한 확장이 가능한 AI 워크플로우 시스템을 구축하여 기술적 완성도를 높입니다.",
-    credentials: ["VACorporation CTO", "Marvrus 부 CTO"],
-  },
-  {
-    name: "유경진",
-    role: "AI 솔루션 총괄 (Head of AI)",
-    bio: "글로벌 수준의 엔지니어링 역량을 바탕으로 AI 솔루션을 현실화합니다. 검증된 최신 AI 기술을 비즈니스 현장에 최적화하여 고객의 운영 효율을 극대화하고 즉각적인 ROI를 창출합니다.",
-    credentials: ["포르쉐 엔지니어링", "AI 강사"],
-  },
-  {
-    name: "크리스 필러",
-    role: "최고전략책임자 (CSO)",
-    bio: "복잡한 운영상의 난제를 분석하여 최적의 솔루션 로드맵을 설계합니다. 이론에 머물지 않고 현장에 즉시 적용 가능한 실용적인 접근으로 실질적인 비즈니스 성과를 견인합니다.",
-    credentials: ["베인앤컴퍼니", "와튼 MBA"],
-  },
-  {
-    name: "폴 메웨스",
-    role: "최고제품책임자 (CPO)",
-    bio: "사용자가 진정으로 필요로 하는 기술을 제품으로 구현합니다. 고도화된 AI 기술을 직관적인 도구로 재해석하여, 도입 즉시 가치를 체감할 수 있는 최적의 사용자 경험을 제공합니다.",
-    credentials: ["세일즈포스", "와튼 MBA"],
-  },
-];
+interface TeamSectionProps {
+  t: Translations;
+}
 
-export function TeamSection() {
+export function TeamSection({ t }: TeamSectionProps) {
+  // Add CEO image to the first member from translations
+  const teamMembers: TeamMember[] = t.teamSection.members.map((member, index) => ({
+    ...member,
+    image: index === 0 ? "/team/ahn.jpg" : undefined,
+  }));
   return (
     <section className="py-24 px-6 bg-white dark:bg-slate-950">
       <div className="max-w-6xl mx-auto">
@@ -58,10 +34,10 @@ export function TeamSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] mb-4">
-            팀 소개
+            {t.teamSection.title}
           </h2>
           <p className="text-xl text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
-            AI 기술과 비즈니스 현장의 교차점에서 혁신을 이끄는 전문가 그룹
+            {t.teamSection.subtitle}
           </p>
         </motion.div>
 
@@ -90,7 +66,7 @@ export function TeamSection() {
                   />
                 </div>
                 <div className="absolute -bottom-2 -right-2 bg-white dark:bg-slate-900 rounded-full px-4 py-1 shadow-lg">
-                  <span className="text-sm font-bold text-[#00268B] dark:text-[#5B8DEF]">대표</span>
+                  <span className="text-sm font-bold text-[#00268B] dark:text-[#5B8DEF]">{t.teamSection.ceoBadge}</span>
                 </div>
               </div>
 

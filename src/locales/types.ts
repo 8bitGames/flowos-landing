@@ -135,6 +135,7 @@ export interface Translations {
       name: string;
       role: string;
       bio: string;
+      credentials: string[];
     }>;
   };
 }

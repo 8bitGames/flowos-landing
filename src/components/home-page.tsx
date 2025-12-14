@@ -219,20 +219,20 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#00268B] to-[#0099CC] dark:from-[#5B8DEF] dark:to-[#00D4FF] mb-4">
-              AI 기반 워크플로우
+              {t.aiWorkflowSection.title}
             </h2>
             <p className="text-xl text-gray-600 dark:text-slate-400">
-              손 쉽게 업무 효율을 높이고 성과를 극대화 하세요
+              {t.aiWorkflowSection.subtitle}
             </p>
           </motion.div>
 
           {/* Features Grid */}
           <div className="grid md:grid-cols-4 gap-4 mb-12">
             {[
-              { icon: Database, text: '데이터 접근성-활용성 확대' },
-              { icon: Sparkles, text: 'AI 기반 주요 업무 자동화' },
-              { icon: Workflow, text: '업무 간 상호 연결-연속성 강화' },
-              { icon: Zap, text: '조직 데이터 안정성 확보' },
+              { icon: Database, text: t.aiWorkflowSection.features[0] },
+              { icon: Sparkles, text: t.aiWorkflowSection.features[1] },
+              { icon: Workflow, text: t.aiWorkflowSection.features[2] },
+              { icon: Zap, text: t.aiWorkflowSection.features[3] },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -266,10 +266,10 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
                   <TrendingUp className="w-8 h-8 text-white" />
-                  <h3 className="text-xl font-bold text-white">생산성 / 효율성</h3>
+                  <h3 className="text-xl font-bold text-white">{t.aiWorkflowSection.productivityTitle}</h3>
                 </div>
                 <p className="text-white/90 mb-6">
-                  조직 생산성과 업무 효율을 높일 수 있습니다.
+                  {t.aiWorkflowSection.productivityDescription}
                 </p>
                 <div className="flex items-baseline gap-1">
                   <CountingNumber start={0} end={30} duration={2000} suffix="%" />
@@ -289,10 +289,10 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
                   <DollarSign className="w-8 h-8 text-white" />
-                  <h3 className="text-xl font-bold text-white">비용 / 리소스</h3>
+                  <h3 className="text-xl font-bold text-white">{t.aiWorkflowSection.costTitle}</h3>
                 </div>
                 <p className="text-white/90 mb-6">
-                  조직 운영 비용과 투입 리소스를 절감해보세요.
+                  {t.aiWorkflowSection.costDescription}
                 </p>
                 <div className="flex items-baseline gap-1">
                   <CountingNumber start={0} end={30} duration={2000} prefix="-" suffix="%" />
@@ -488,10 +488,10 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
             {/* Company Info */}
             <div className="text-sm text-gray-600 dark:text-slate-400 space-y-1">
               <p className="font-medium text-gray-700 dark:text-slate-300">
-                (주)플로우오에스 | 대표 안희창
+                {t.companyInfo.name} | {t.companyInfo.ceo}
               </p>
               <p>
-                주소: 서울시 서초구 강남대로 53길8 6-162호
+                {t.companyInfo.address}
               </p>
             </div>
 

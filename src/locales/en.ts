@@ -203,4 +203,55 @@ export const en: Translations = {
   floatingButton: {
     text: 'FlowOS Inquiry',
   },
+  aiWorkflowSection: {
+    title: 'AI-Powered Workflow',
+    subtitle: 'Easily boost efficiency and maximize results',
+    features: [
+      'Maximize data accessibility & utilization',
+      'AI-driven core task automation',
+      'Enhanced cross-task connectivity',
+      'Secure organizational data assets',
+    ],
+    productivityTitle: 'Productivity Boost',
+    productivityDescription: 'Dramatically improve your team\'s work speed and efficiency.',
+    costTitle: 'Cost Reduction',
+    costDescription: 'Reduce unnecessary resource investment and cut operational costs.',
+  },
+  companyInfo: {
+    name: 'FlowOS Inc.',
+    ceo: 'CEO: Heechang Ahn',
+    address: 'Seoul, South Korea',
+  },
+  teamSection: {
+    title: 'Our Team',
+    subtitle: 'Experts driving innovation at the intersection of AI and business',
+    ceoBadge: 'CEO',
+    members: [
+      {
+        name: 'Heechang Ahn',
+        role: 'CEO',
+        bio: 'Defines the essence of problems and validates hypotheses to achieve data-driven optimization. Creates environments where companies can work 30% smarter through AI workflow design.',
+      },
+      {
+        name: 'Jaepil Seo',
+        role: 'CTO',
+        bio: 'Oversees FlowOS\'s core architecture based on technical leadership across various industries. Builds stable yet flexible AI workflow systems for technical excellence.',
+      },
+      {
+        name: 'Kyungjin Yu',
+        role: 'Head of AI',
+        bio: 'Realizes AI solutions with global-level engineering capabilities. Optimizes proven AI technologies for business environments to maximize operational efficiency and deliver immediate ROI.',
+      },
+      {
+        name: 'Chris Filler',
+        role: 'CSO',
+        bio: 'Analyzes complex operational challenges to design optimal solution roadmaps. Drives real business results through practical approaches that can be immediately applied in the field.',
+      },
+      {
+        name: 'Paul Mews',
+        role: 'CPO',
+        bio: 'Transforms technology users truly need into products. Reinterprets advanced AI into intuitive tools that deliver value from day one.',
+      },
+    ],
+  },
 };

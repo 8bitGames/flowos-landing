@@ -113,6 +113,30 @@ export interface Translations {
   floatingButton: {
     text: string;
   };
+  aiWorkflowSection: {
+    title: string;
+    subtitle: string;
+    features: string[];
+    productivityTitle: string;
+    productivityDescription: string;
+    costTitle: string;
+    costDescription: string;
+  };
+  companyInfo: {
+    name: string;
+    ceo: string;
+    address: string;
+  };
+  teamSection: {
+    title: string;
+    subtitle: string;
+    ceoBadge: string;
+    members: Array<{
+      name: string;
+      role: string;
+      bio: string;
+    }>;
+  };
 }
 
 export type Locale = 'ko' | 'en';

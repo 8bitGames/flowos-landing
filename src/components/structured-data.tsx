@@ -8,7 +8,7 @@ export function OrganizationStructuredData() {
     logo: 'https://flowos.work/logo/symbol.svg',
     image: 'https://flowos.work/og-image.png',
     description:
-      'FlowOS는 AI 기반 업무 자동화 및 데이터 운영 체제를 제공하는 기업입니다. 데이터 구조화부터 워크플로우 설계, 시스템 운영까지 End-to-End로 지원합니다.',
+      'FlowOS는 AI와 데이터를 기반으로 기업의 업무를 자동화하고 운영 체제를 구축해주는 서비스입니다. 기업 내 데이터를 발견·분석·연결하여 생산성을 극대화하고 비용을 절감하는 End-to-End 통합 솔루션을 제공합니다.',
     foundingDate: '2024',
     slogan: 'Where Data Meets AI',
     knowsAbout: [
@@ -48,7 +48,7 @@ export function WebsiteStructuredData() {
     alternateName: 'FlowOS - AI Data Operating System',
     url: 'https://flowos.work',
     description:
-      'AI 기반 업무 자동화 및 데이터 운영 체제. 생산성 30% 향상, 비용 30% 절감을 실현하는 End-to-End 솔루션.',
+      '기업 데이터의 잠재력을 깨워 생산성을 극대화하는 AI 솔루션. 평균 생산성 30% 향상, 비용 30% 절감을 실현합니다.',
     inLanguage: ['ko-KR', 'en-US'],
     potentialAction: {
       '@type': 'SearchAction',
@@ -113,26 +113,26 @@ export function FAQStructuredData() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'FlowOS는 무엇인가요?',
+        name: 'FlowOS는 구체적으로 어떤 서비스인가요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'FlowOS는 AI 기반 데이터 운영 체제로, 기업의 데이터를 발견, 분석, 연결하여 업무 자동화를 실현하는 End-to-End 솔루션입니다. 생산성 30% 향상과 비용 30% 절감을 달성할 수 있습니다.',
+          text: 'FlowOS는 AI와 데이터를 기반으로 기업의 업무를 자동화하고 운영 체제를 구축해주는 서비스입니다. 기업 내 데이터를 발견·분석·연결하여 생산성을 극대화하고 비용을 절감하는 End-to-End 통합 솔루션을 제공합니다.',
         },
       },
       {
         '@type': 'Question',
-        name: 'FlowOS는 어떤 기업에 적합한가요?',
+        name: '특정 산업군에만 특화된 서비스인가요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'FlowOS는 데이터 기반 의사결정과 업무 자동화가 필요한 모든 기업에 적합합니다. 특히 반복적인 업무 처리, 데이터 분석, 워크플로우 최적화가 필요한 기업에서 큰 효과를 볼 수 있습니다.',
+          text: '아닙니다. 데이터가 쌓이는 곳이라면 산업이나 기업 규모에 관계없이 FlowOS를 활용할 수 있습니다. 특히 데이터 기반의 효율화와 반복 업무 자동화가 필요한 모든 기업에 적합합니다.',
         },
       },
       {
         '@type': 'Question',
-        name: 'FlowOS 도입 시 어떤 효과를 기대할 수 있나요?',
+        name: '도입 시 정량적으로 어떤 효과를 기대할 수 있나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'FlowOS를 도입하면 생산성 30% 향상, 운영 비용 30% 절감, 의사결정 속도 향상, 데이터 기반 인사이트 확보 등의 효과를 기대할 수 있습니다.',
+          text: '평균적으로 조직 생산성 30% 향상 및 운영 비용 30% 절감 효과를 기대할 수 있습니다. 또한, 데이터 기반의 빠르고 정확한 의사결정 체계 확립과 반복 업무 자동화를 통한 업무 효율화를 실현합니다.',
         },
       },
     ],

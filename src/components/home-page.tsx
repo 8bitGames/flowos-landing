@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CTAButton } from '@/components/ui/cta-button';
 import ThemeToggle from '@/components/ui/theme-toggle';
+import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { FlipWords } from '@/components/ui/flip-words';
 import { Spotlight } from '@/components/ui/spotlight';
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
@@ -83,6 +84,7 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
             </button>
 
             <div className="hidden md:flex items-center gap-3">
+              <LanguageSwitcher />
               <ThemeToggle />
               <HoverBorderGradient
                 as="a"
@@ -120,6 +122,10 @@ export function HomePage({ locale, translations: t }: HomePageProps) {
                 ))}
               </nav>
               <div className="flex flex-col gap-6 mb-8">
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-lg font-medium text-gray-700 dark:text-slate-300">Language</span>
+                  <LanguageSwitcher />
+                </div>
                 <div className="flex items-center justify-between py-3">
                   <span className="text-lg font-medium text-gray-700 dark:text-slate-300">Theme</span>
                   <ThemeToggle />
